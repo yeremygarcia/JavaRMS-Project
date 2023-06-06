@@ -7,7 +7,7 @@ public class OrderManager {
     private Map<Integer, Order> activeOrders = new HashMap<>();
 
     public void addOrder(Order order) {
-        activeOrders.put(order.getOrderID(), order);
+        activeOrders.put(Integer.valueOf(order.getOrderID()), order);
     }
 
     public void removeOrder(int orderID) {

@@ -1,20 +1,21 @@
 package org.example;
 
+import java.util.List;
 import java.util.Map;
 
 public class Order {
-    private static int nextOrderId = 1;
-    private int orderID;
+    private String orderID;
     private Map<String, Integer> itemsOrdered;
     private double totalPrice;
     private OrderStatus status;
 
-    public Order(Map<String, Integer> itemsOrdered) {
-        this.orderID = nextOrderId++;
+    public Order(String orderID, Map<String, Integer> itemsOrdered, OrderStatus status) {
+        this.orderID = orderID;
         this.itemsOrdered = itemsOrdered;
+        this.status = status;
         calculateTotalPrice();
-        this.status = OrderStatus.WAITING;
     }
+
     private void calculateTotalPrice() {
         double price = 0.0;
         for (Map.Entry<String, Integer> entry : itemsOrdered.entrySet()) {
@@ -25,8 +26,8 @@ public class Order {
         }
         this.totalPrice = price;
     }
-    private double getItemPrice(String itemName) {
 
+    private double getItemPrice(String itemName) {
         if (itemName.equals("Cheeseburger")) {
             return 2.0;
         } else if (itemName.equals("Fries")) {
@@ -36,20 +37,33 @@ public class Order {
         }
         return 0.0;
     }
-    public Integer getOrderID() {
+
+    public String getOrderID() {
         return orderID;
     }
+
+    public OrderStatus getStatus() {
+        return status;
+    }
+
     public void setStatus(OrderStatus status) {
         this.status = status;
     }
+
+    public double getTotalPrice() {
+        return totalPrice;
+    }
+
+    public Map<String, Integer> getItemsOrdered() {
+        return itemsOrdered;
+    }
+
     public String toString() {
         return "Order{" +
-                "orderId=" + orderID  +
+                "orderID='" + orderID + '\'' +
                 ", itemsOrdered=" + itemsOrdered +
                 ", totalPrice=" + totalPrice +
                 ", status=" + status +
                 '}';
     }
-
-    // Getters, Setters, etc.
 }
