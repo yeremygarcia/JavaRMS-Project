@@ -11,6 +11,7 @@ public class Main {
     public static int choice, quantity = 1;
     public static String again;
     public static double total = 0, pay;
+    private static Scanner scanner;
 
     public static void main(String[] args) {
         UserRepository userRepository = new UserRepository();
@@ -228,18 +229,29 @@ public class Main {
             System.out.println("Invalid choice, please choose item 1 to 8 only");
             System.out.println();
             order();
+
+            String statusString = scanner.nextLine();
+            OrderService orderService = new OrderService();
+            if (statusString.equalsIgnoreCase("ready")) {
+                System.out.println(orderService.updateStatus(Order.OrderStatus.READY));
+            } else if (statusString.equalsIgnoreCase("waiting")) {
+                System.out.println(orderService.updateStatus(Order.OrderStatus.WAITING));
+            } else if (statusString.equalsIgnoreCase("preparing")) {
+                System.out.println(orderService.updateStatus(Order.OrderStatus.PREPARING));
+            }
+
+            List<MenuItem> menu = loadMenu("C:\\Users\\admin\\Documents\\CTAC-Program\\JavaRMS-Project\\src\\main\\java\\org\\example\\Menu.txt");
+
+            // Example usage
+            MenuItem item1 = new MenuItem("Item 1", "Description 1", 10.0, 9.99, new ArrayList<>());
+            MenuItem item2 = new MenuItem("Item 2", "Description 2", 15.0, 14.99, new ArrayList<>());
+
+            menu.add(item1);
+            menu.add(item2);
+
+            saveMenu(menu, "Menu.txt");
+
         }
-
-        List<MenuItem> menu = loadMenu("C:\\Users\\admin\\Documents\\CTAC-Program\\JavaRMS-Project\\src\\main\\java\\org\\example\\Menu.txt");
-
-        // Example usage
-        MenuItem item1 = new MenuItem("Item 1", "Description 1", 10.0, 9.99, new ArrayList<>());
-        MenuItem item2 = new MenuItem("Item 2", "Description 2", 15.0, 14.99, new ArrayList<>());
-
-        menu.add(item1);
-        menu.add(item2);
-
-        saveMenu(menu, "Menu.txt");
     }
 }
 

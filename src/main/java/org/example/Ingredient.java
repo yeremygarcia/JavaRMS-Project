@@ -27,7 +27,6 @@ public class Ingredient {
     }
 
     public int getThreshold() {
-        int i = 0;
-        return i;
+        return 0;
     }
 }

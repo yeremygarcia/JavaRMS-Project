@@ -1,22 +1,36 @@
 package org.example;
 
-import java.util.List;
-import java.util.Map;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 public class Order {
-    private String orderID;
-    private Map<String, Integer> itemsOrdered;
     private double totalPrice;
-    private OrderStatus status;
+    private OrderStatus orderStatus;
+    private HashMap<String, Integer> quantityOrdered;
+    private List<MenuItem> itemsOrdered;
+    private final Date lastHandled;
+    private int orderID;
+    private int orderTableID;
+    enum OrderStatus {
+        WAITING,
+        PREPARING,
+        READY
+    }
 
-    public Order(String orderID, Map<String, Integer> itemsOrdered, OrderStatus status) {
-        this.orderID = orderID;
-        this.itemsOrdered = itemsOrdered;
-        this.status = status;
-        calculateTotalPrice();
+    public Order() {
+        this.totalPrice = 0;
+        this.orderID = Integer.parseInt(String.valueOf(0));
+        //this.orderStatus = OrderStatus.WAITING;
+        this.itemsOrdered = new ArrayList<>();
+        this.quantityOrdered = new HashMap<>();
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        this.lastHandled = new Date();
+        formatter.format(lastHandled);
+        this.orderTableID = 0;
     }
 
     private void calculateTotalPrice() {
+        setTotalPrice();
         double price = 0.0;
         for (Map.Entry<String, Integer> entry : itemsOrdered.entrySet()) {
             String itemName = entry.getKey();
@@ -25,6 +39,14 @@ public class Order {
             price += itemPrice * quantity;
         }
         this.totalPrice = price;
+    }
+    public void addItemsOrdered(MenuItem item) {
+        totalPrice = 0;
+        itemsOrdered.add(item);
+        getTotalPrice();
+    }
+
+    private void setTotalPrice() {
     }
 
     private double getItemPrice(String itemName) {
@@ -38,24 +60,52 @@ public class Order {
         return 0.0;
     }
 
-    public String getOrderID() {
+    public int getOrderID() {
         return orderID;
     }
 
-    public OrderStatus getStatus() {
-        return status;
+    public void setOrderStatus(OrderStatus orderStatus) {
+        this.orderStatus = orderStatus;
     }
-
-    public void setStatus(OrderStatus status) {
-        this.status = status;
+    public OrderStatus getOrderStatus() {
+        return orderStatus;
     }
-
     public double getTotalPrice() {
+        setTotalPrice();
         return totalPrice;
     }
 
     public Map<String, Integer> getItemsOrdered() {
+        return (Map<String, Integer>) itemsOrdered;
+    }
+    public String getOrderedItems(){
+        List<MenuItem> itemsOrdered = getItemsOrderedList();
+        String orderList = "";
+        for(MenuItem item: itemsOrdered){
+            orderList += item + "\n";
+        }
+        return orderList;
+    }
+
+    private List<MenuItem> getItemsOrderedList() {
         return itemsOrdered;
+    }
+    public String addItemQuantity(){
+        String orderInfo = "\n";
+        quantityOrdered.clear();
+        for(MenuItem item: itemsOrdered){
+            if(!quantityOrdered.containsKey(item.getName())){
+                quantityOrdered.put(item.getName(),1);
+            } else {
+                quantityOrdered.put(item.getName(), quantityOrdered.get(item.getName()) + 1);
+            }
+        }
+        for(MenuItem item: itemsOrdered){
+            if(!orderInfo.contains(item.getName())){
+                orderInfo += item.getName() + "->" + quantityOrdered.get(item.getName()) + "\n";
+            }
+        }
+        return orderInfo;
     }
 
     public String toString() {
@@ -63,7 +113,7 @@ public class Order {
                 "orderID='" + orderID + '\'' +
                 ", itemsOrdered=" + itemsOrdered +
                 ", totalPrice=" + totalPrice +
-                ", status=" + status +
+                ", status=" + orderStatus +
                 '}';
     }
 }
