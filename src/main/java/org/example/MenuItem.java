@@ -1,5 +1,8 @@
 package org.example;
 
+import java.awt.*;
+import java.io.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class MenuItem {
@@ -16,8 +19,8 @@ public class MenuItem {
         this.itemPrice = itemPrice;
         this.ingredients = ingredients;
     }
-    // Getters, Setters
 
+    // Getters, Setters...
 
     public String getItemName() {
         return itemName;
@@ -57,5 +60,66 @@ public class MenuItem {
 
     public void setIngredients(List<String> ingredients) {
         this.ingredients = ingredients;
+    }
+
+    public static void saveMenu(List<MenuItem> menu, String fileName) {
+        try {
+            FileWriter fileWriter = new FileWriter("C:\\Users\\admin\\Documents\\CTAC-Program\\JavaRMS-Project\\src\\main\\java\\org\\example\\Menu.txt");
+            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+
+            for (MenuItem item : menu) {
+                bufferedWriter.write(item.getItemName() + ",");
+                bufferedWriter.write(item.getItemDescription() + ",");
+                bufferedWriter.write(item.getPreparationTime() + ",");
+                bufferedWriter.write(item.getItemPrice() + ",");
+                for (String ingredient : item.getIngredients()) {
+                    bufferedWriter.write(ingredient + ";");
+                }
+                bufferedWriter.newLine();
+            }
+
+            bufferedWriter.close();
+            fileWriter.close();
+            System.out.println("Menu saved successfully.");
+        } catch (IOException e) {
+            System.out.println("Error saving menu: " + e.getMessage());
+        }
+    }
+
+    public static List<MenuItem> loadMenu(String fileName) {
+        List<MenuItem> menu = new ArrayList<>();
+        try {
+            FileReader fileReader = new FileReader("C:\\Users\\admin\\Documents\\CTAC-Program\\JavaRMS-Project\\src\\main\\java\\org\\example\\Menu.txt");
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+
+            String line;
+            while ((line = bufferedReader.readLine()) != null) {
+                String[] parts = line.split(",");
+                if (parts.length >= 4) {
+                    String itemName = parts[0];
+                    String itemDescription = parts[1];
+                    double preparationTime = Double.parseDouble(parts[2]);
+                    double itemPrice = Double.parseDouble(parts[3]);
+                    List<String> ingredients = new ArrayList<>();
+
+                    if (parts.length >= 5) {
+                        String[] ingredientParts = parts[4].split(";");
+                        for (String ingredient : ingredientParts) {
+                            ingredients.add(ingredient);
+                        }
+                    }
+
+                    MenuItem item = new MenuItem(itemName, itemDescription, preparationTime, itemPrice, ingredients);
+                    menu.add(item);
+                }
+            }
+
+            bufferedReader.close();
+            fileReader.close();
+            System.out.println("Menu loaded successfully.");
+        } catch (IOException e) {
+            System.out.println("Error loading menu: " + e.getMessage());
+        }
+        return menu;
     }
 }

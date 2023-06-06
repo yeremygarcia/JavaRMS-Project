@@ -1,5 +1,11 @@
 package org.example;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
+
+import static org.example.MenuItem.loadMenu;
+import static org.example.MenuItem.saveMenu;
+
 public class Main {
     public static Scanner input = new Scanner(System.in);
     public static int choice, quantity = 1;
@@ -72,9 +78,7 @@ public class Main {
                 }
 
             }
-        }
-
-        else if (choice == 2) {
+        } else if (choice == 2) {
             System.out.println("You selected a Cheeseburger");
             System.out.print("How many Cheeseburgers would you like ? : ");
             quantity = input.nextInt();
@@ -98,9 +102,7 @@ public class Main {
                 }
 
             }
-        }
-
-        else if (choice == 3) {
+        } else if (choice == 3) {
             System.out.println("You selected Chicken Sandwich");
             System.out.print("How many Chicken Sandwiches would you like ? : ");
             quantity = input.nextInt();
@@ -124,9 +126,7 @@ public class Main {
                 }
 
             }
-        }
-
-        else if (choice == 4) {
+        } else if (choice == 4) {
             System.out.println("You selected Fries");
             System.out.print("How many order of Fries would you like ? : ");
             quantity = input.nextInt();
@@ -150,9 +150,7 @@ public class Main {
                 }
 
             }
-        }
-
-        else if (choice == 5) {
+        } else if (choice == 5) {
             System.out.println("You selected Tater Tots");
             System.out.print("How many orders of Tater Tots would you like ? : ");
             quantity = input.nextInt();
@@ -176,9 +174,7 @@ public class Main {
                 }
 
             }
-        }
-
-        else if (choice == 6) {
+        } else if (choice == 6) {
             System.out.println("You selected Vanilla Shake");
             System.out.print("How many Vanilla Shakes would you like ? : ");
             quantity = input.nextInt();
@@ -202,9 +198,7 @@ public class Main {
                 }
 
             }
-        }
-
-        else if (choice == 7) {
+        } else if (choice == 7) {
             System.out.println("You selected Chocolate Shake");
             System.out.print("How many Chocolate Shake would you like ? : ");
             quantity = input.nextInt();
@@ -235,6 +229,17 @@ public class Main {
             System.out.println();
             order();
         }
+
+        List<MenuItem> menu = loadMenu("C:\\Users\\admin\\Documents\\CTAC-Program\\JavaRMS-Project\\src\\main\\java\\org\\example\\Menu.txt");
+
+        // Example usage
+        MenuItem item1 = new MenuItem("Item 1", "Description 1", 10.0, 9.99, new ArrayList<>());
+        MenuItem item2 = new MenuItem("Item 2", "Description 2", 15.0, 14.99, new ArrayList<>());
+
+        menu.add(item1);
+        menu.add(item2);
+
+        saveMenu(menu, "Menu.txt");
     }
 }
 
