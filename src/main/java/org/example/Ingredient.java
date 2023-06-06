@@ -10,19 +10,24 @@ public class Ingredient {
         this.quantity = quantity;
         this.threshold = threshold;
     }
+    @Override
+    public String toString() {
+        return "Ingredient: " + name + ", Quantity: " + quantity;
+    }
 
     public String getName() {
         return getName();
     }
 
+    public int getQuantity() {
+        return getQuantity();
+    }
+
     public void setQuantity(int i) {
     }
 
-    public int getQuantity() {
-        return 0;
-    }
-
     public int getThreshold() {
-        return 0;
+        int i = 0;
+        return i;
     }
 }
