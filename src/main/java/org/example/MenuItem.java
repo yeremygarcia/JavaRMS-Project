@@ -89,7 +89,7 @@ public class MenuItem {
     public static List<MenuItem> loadMenu(String fileName) {
         List<MenuItem> menu = new ArrayList<>();
         try {
-            FileReader fileReader = new FileReader("C:\\Users\\admin\\Documents\\CTAC-Program\\JavaRMS-Project\\src\\main\\java\\org\\example\\Menu.txt");
+            FileReader fileReader = new FileReader("C:\\Users\\klee9\\CTAC\\Day66\\Project\\JavaRMS-Project\\src\\main\\java\\org\\example\\Menu.txt");
             BufferedReader bufferedReader = new BufferedReader(fileReader);
 
             String line;
