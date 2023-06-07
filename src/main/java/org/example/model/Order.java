@@ -27,19 +27,30 @@ public class Order {
     private void calculateTotalPrice() {
         setTotalPrice();
         double price = 0.0;
+<<<<<<< HEAD:src/main/java/org/example/model/Order.java
         for (Customer.MenuItem itemName : itemsOrdered) {
             int quantity = getQuantity(itemName);
             double itemPrice = getItemPrice(String.valueOf(itemName));
+=======
+        for (Map.Entry<String, Integer> entry : itemsOrdered.entrySet()) {
+            String itemName = entry.getKey();
+            int quantity = entry.getValue();
+            double itemPrice = getItemPrice(itemName);
+>>>>>>> parent of 383799f... Got File I/O working again, this is the way:src/main/java/org/example/Order.java
             price += itemPrice * quantity;
         }
         this.totalPrice = price;
     }
+<<<<<<< HEAD:src/main/java/org/example/model/Order.java
 
     private int getQuantity(Customer.MenuItem itemName) {
         return 0;
     }
 
     public void addItemsOrdered(Customer.MenuItem item) {
+=======
+    public void addItemsOrdered(MenuItem item) {
+>>>>>>> parent of 383799f... Got File I/O working again, this is the way:src/main/java/org/example/Order.java
         totalPrice = 0;
         itemsOrdered.add(item);
         getTotalPrice();
