@@ -32,14 +32,18 @@ public class Order {
     private void calculateTotalPrice() {
         setTotalPrice();
         double price = 0.0;
-        for (Map.Entry<String, Integer> entry : itemsOrdered.entrySet()) {
-            String itemName = entry.getKey();
-            int quantity = entry.getValue();
-            double itemPrice = getItemPrice(itemName);
+        for (MenuItem itemName : itemsOrdered) {
+            int quantity = getQuantity(itemName);
+            double itemPrice = getItemPrice(String.valueOf(itemName));
             price += itemPrice * quantity;
         }
         this.totalPrice = price;
     }
+
+    private int getQuantity(MenuItem itemName) {
+        return 0;
+    }
+
     public void addItemsOrdered(MenuItem item) {
         totalPrice = 0;
         itemsOrdered.add(item);
