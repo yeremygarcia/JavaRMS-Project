@@ -25,6 +25,9 @@ public class MenuItem {
     public String getItemName() {
         return itemName;
     }
+    public String getName() {
+        return getName();
+    }
 
     public String getItemDescription() {
         return itemDescription;
@@ -123,7 +126,4 @@ public class MenuItem {
         return menu;
     }
 
-    public String getName() {
-        return null;
-    }
 }

@@ -1,4 +1,4 @@
-package org.example.model;
+package org.example;
 
 public class Ingredient {
     private String name;
@@ -30,3 +30,4 @@ public class Ingredient {
         return 0;
     }
 }
+

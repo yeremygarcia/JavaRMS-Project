@@ -1,4 +1,4 @@
-package org.example.model;
+package org.example;
 
 public enum OrderStatus {
     WAITING,

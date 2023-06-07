@@ -1,8 +1,4 @@
-package org.example.model;
-
-import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
+package org.example;
 
 public class Customer {
     private String name;

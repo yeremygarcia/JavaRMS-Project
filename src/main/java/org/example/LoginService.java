@@ -1,10 +1,8 @@
-package org.example.controller;
+package org.example;
+
+import org.mindrot.jbcrypt.BCrypt;
 
 import java.util.Scanner;
-
-import org.example.model.User;
-import org.example.model.UserRepository;
-import org.mindrot.jbcrypt.BCrypt;
 
 public class LoginService {
     private UserRepository userRepository;
@@ -35,4 +33,3 @@ public class LoginService {
         return BCrypt.checkpw(password, hashedPassword);
     }
 }
-

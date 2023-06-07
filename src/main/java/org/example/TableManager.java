@@ -1,8 +1,4 @@
-package org.example.controller;
-
-import org.example.model.Customer;
-import org.example.model.Table;
-import org.example.model.TableStatus;
+package org.example;
 
 import java.util.HashMap;
 import java.util.Map;

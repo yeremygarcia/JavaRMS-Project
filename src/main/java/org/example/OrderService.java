@@ -1,7 +1,4 @@
-package org.example.controller;
-
-import org.example.model.Order;
-import org.example.model.OrderStatus;
+package org.example;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -29,7 +26,7 @@ public class OrderService {
     public Order getOrder(int orderID) {
         return activeOrders.get(orderID);
     }
-    public String updateStatus(OrderStatus status){
+    public String updateStatus(Order.OrderStatus status){
         String foundOrders = "";
         for (Order order: orderList){
             if(order.getOrderStatus() == status){
