@@ -246,9 +246,26 @@ public class Main {
             } else if (statusString.equalsIgnoreCase("preparing")) {
                 System.out.println(orderService.updateStatus(OrderStatus.PREPARING));
             }
+
+            List<MenuItem> menu = loadMenu("C:\\Users\\admin\\Documents\\CTAC-Program\\JavaRMS-Project\\src\\main\\java\\org\\example\\Menu.txt");
+
+            // Example usage
+            MenuItem item1 = new MenuItem("Item 1", "Description 1", 10.0, 9.99, new ArrayList<>());
+            MenuItem item2 = new MenuItem("Item 2", "Description 2", 15.0, 14.99, new ArrayList<>());
+
+            menu.add(item1);
+            menu.add(item2);
+
+            saveMenu(menu, "Menu.txt");
+
         }
+<<<<<<< HEAD:src/main/java/org/example/view/Main.java
 <<<<<<< HEAD
         List<Customer.MenuItem> menu = loadMenu("C:\\Users\\admin\\Documents\\CTAC-Program\\JavaRMS-Project\\src\\main\\java\\org\\example\\Menu.txt");
+=======
+
+        List<MenuItem> menu = loadMenu("C:\\Users\\admin\\Documents\\CTAC-Program\\JavaRMS-Project\\src\\main\\java\\org\\example\\Menu.txt");
+>>>>>>> parent of 383799f... Got File I/O working again, this is the way:src/main/java/org/example/Main.java
 
         // Example usage
 <<<<<<< HEAD:src/main/java/org/example/Main.java
@@ -279,7 +296,11 @@ public class Main {
 //        menu.add(item7);
 
         saveMenu(menu, "C:\\Users\\admin\\Documents\\CTAC-Program\\JavaRMS-Project\\src\\main\\java\\org\\example\\Menu.txt");
+<<<<<<< HEAD:src/main/java/org/example/view/Main.java
 =======
 >>>>>>> 4ada3676b9c50a2b6cfa6a62d75ad0245aed5414
+=======
+
+>>>>>>> parent of 383799f... Got File I/O working again, this is the way:src/main/java/org/example/Main.java
     }
 }
