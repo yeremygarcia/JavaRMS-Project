@@ -1,7 +1,8 @@
 package org.example;
 
-import java.util.Scanner;
 import org.mindrot.jbcrypt.BCrypt;
+
+import java.util.Scanner;
 
 public class LoginService {
     private UserRepository userRepository;
@@ -32,4 +33,3 @@ public class LoginService {
         return BCrypt.checkpw(password, hashedPassword);
     }
 }
-

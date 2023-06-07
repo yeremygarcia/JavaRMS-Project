@@ -1,8 +1,9 @@
 package org.example;
 
+import org.mindrot.jbcrypt.BCrypt;
+
 import java.util.HashMap;
 import java.util.Map;
-import org.mindrot.jbcrypt.BCrypt;
 
 public class UserRepository {
     private Map<String, User> users;

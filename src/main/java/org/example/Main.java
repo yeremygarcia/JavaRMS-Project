@@ -1,11 +1,10 @@
 package org.example;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-
 import static org.example.MenuItem.loadMenu;
 import static org.example.MenuItem.saveMenu;
-
 public class Main {
     public static Scanner input = new Scanner(System.in);
     public static int choice, quantity = 1;
@@ -248,21 +247,8 @@ public class Main {
             } else if (statusString.equalsIgnoreCase("preparing")) {
                 System.out.println(orderService.updateStatus(Order.OrderStatus.PREPARING));
             }
-
-            List<MenuItem> menu = loadMenu("C:\\Users\\klee9\\CTAC\\Day66\\Project\\JavaRMS-Project\\src\\main\\java\\org\\example\\Menu.txt");
-
-            // Example usage
-            MenuItem item1 = new MenuItem("Item 1", "Description 1", 10.0, 9.99, new ArrayList<>());
-            MenuItem item2 = new MenuItem("Item 2", "Description 2", 15.0, 14.99, new ArrayList<>());
-
-            menu.add(item1);
-            menu.add(item2);
-
-            saveMenu(menu, "Menu.txt");
-
         }
-
-        List<MenuItem> menu = loadMenu("C:\\Users\\klee9\\CTAC\\Day66\\Project\\JavaRMS-Project\\src\\main\\java\\org\\example\\Menu.txt");
+        List<MenuItem> menu = loadMenu("C:\\Users\\admin\\Documents\\CTAC-Program\\JavaRMS-Project\\src\\main\\java\\org\\example\\Menu.txt");
 
         // Example usage
         MenuItem item1 = new MenuItem("Item 1", "Description 1", 10.0, 9.99, new ArrayList<>());
@@ -282,7 +268,6 @@ public class Main {
         menu.add(item6);
         menu.add(item7);
 
-        saveMenu(menu, "C:\\Users\\klee9\\CTAC\\Day66\\Project\\JavaRMS-Project\\src\\main\\java\\org\\example\\Menu.txt");
-
+        saveMenu(menu, "C:\\Users\\admin\\Documents\\CTAC-Program\\JavaRMS-Project\\src\\main\\java\\org\\example\\Menu.txt");
     }
 }
