@@ -1,4 +1,5 @@
 package org.example;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -252,22 +253,22 @@ public class Main {
         List<MenuItem> menu = loadMenu("C:\\Users\\admin\\Documents\\CTAC-Program\\JavaRMS-Project\\src\\main\\java\\org\\example\\Menu.txt");
 
         // Example usage
-        MenuItem item1 = new MenuItem("Item 1", "Description 1", 10.0, 9.99, new ArrayList<>());
-        MenuItem item2 = new MenuItem("Item 2", "Description 2", 15.0, 14.99, new ArrayList<>());
-        MenuItem item3 = new MenuItem("Item 3", "Description 3", 15.0, 14.99, new ArrayList<>());
-        MenuItem item4 = new MenuItem("Item 4", "Description 4", 15.0, 14.99, new ArrayList<>());
-        MenuItem item5 = new MenuItem("Item 5", "Description 5", 15.0, 14.99, new ArrayList<>());
-        MenuItem item6 = new MenuItem("Item 6", "Description 6", 15.0, 14.99, new ArrayList<>());
-        MenuItem item7 = new MenuItem("Item 7", "Description 7", 15.0, 14.99, new ArrayList<>());
+        MenuItem item1 = new MenuItem("Hamburger", "A classic hamburger made with a juicy beef patty, served on a bun.", 7.0, 1.0, new ArrayList<>());
+        MenuItem item2 = new MenuItem("Cheeseburger", "Our delicious hamburger topped with a slice of cheese, served on a bun.", 7.0, 2.0, new ArrayList<>());
+        MenuItem item3 = new MenuItem("Chicken Sandwich", "A tender chicken fillet, seasoned and grilled to perfection, served on a bun.", 7.0, 1.0, new ArrayList<>());
+        MenuItem item4 = new MenuItem("Fries", "Crispy and golden French fries, perfect as a side or a snack.", 15.0, 10.0, new ArrayList<>());
+        MenuItem item5 = new MenuItem("Tater Tots", "Bite-sized potato nuggets, crispy on the outside and fluffy on the inside.", 10.0, 1.0, new ArrayList<>());
+        MenuItem item6 = new MenuItem("Vanilla Shake", "A creamy and smooth vanilla-flavored milkshake, perfect for a sweet treat.", 5.0, 1.5, new ArrayList<>());
+        MenuItem item7 = new MenuItem("Choc Shake", "Indulge in a rich and chocolaty milkshake that will satisfy your chocolate cravings.", 5.0, 1.5, new ArrayList<>());
 
-
-        menu.add(item1);
-        menu.add(item2);
-        menu.add(item3);
-        menu.add(item4);
-        menu.add(item5);
-        menu.add(item6);
-        menu.add(item7);
+//
+//        menu.add(item1);
+//        menu.add(item2);
+//        menu.add(item3);
+//        menu.add(item4);
+//        menu.add(item5);
+//        menu.add(item6);
+//        menu.add(item7);
 
         saveMenu(menu, "C:\\Users\\admin\\Documents\\CTAC-Program\\JavaRMS-Project\\src\\main\\java\\org\\example\\Menu.txt");
     }

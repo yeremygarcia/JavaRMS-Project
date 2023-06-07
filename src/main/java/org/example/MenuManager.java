@@ -1,27 +1,34 @@
 package org.example;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MenuManager {
-    private Map<String, MenuItem> menuItems = new HashMap<>();
+    private List<MenuItem> menuItems = new ArrayList<>();
 
     public void addItem(MenuItem item) {
-        menuItems.put(item.getItemName(), item);
+        menuItems.add(item);
     }
 
     public void removeItem(String itemName) {
-        menuItems.remove(itemName);
+        menuItems.removeIf(item -> item.getItemName().equals(itemName));
     }
 
     public void editItem(MenuItem item) {
-        // Update the existing item in the map.
-        if (menuItems.containsKey(item.getItemName())) {
-            menuItems.put(item.getItemName(), item);
+        for (int i = 0; i < menuItems.size(); i++) {
+            if (menuItems.get(i).getItemName().equals(item.getItemName())) {
+                menuItems.set(i, item);
+                break;
+            }
         }
     }
 
     public MenuItem getItem(String itemName) {
-        return menuItems.get(itemName);
+        for (MenuItem item : menuItems) {
+            if (item.getItemName().equals(itemName)) {
+                return item;
+            }
+        }
+        return null;
     }
 }
