@@ -11,9 +11,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import static org.example.model.Customer.MenuItem.loadMenu;
-import static org.example.model.Customer.MenuItem.saveMenu;
-
 public class Main {
     public static Scanner input = new Scanner(System.in);
     public static int choice, quantity = 1;
@@ -21,14 +18,7 @@ public class Main {
     public static double total = 0, pay;
     private static Scanner scanner;
 
-    private static void editItem(List<Customer.MenuItem> menu, Scanner scanner) {
-    }
 
-    private static void removeItem(List<Customer.MenuItem> menu, Scanner scanner) {
-    }
-
-    private static void addItem(List<Customer.MenuItem> menu, Scanner scanner) {
-    }
 
     public static void main(String[] args) {
         UserRepository userRepository = new UserRepository();
@@ -257,6 +247,7 @@ public class Main {
                 System.out.println(orderService.updateStatus(OrderStatus.PREPARING));
             }
         }
+<<<<<<< HEAD
         List<Customer.MenuItem> menu = loadMenu("C:\\Users\\admin\\Documents\\CTAC-Program\\JavaRMS-Project\\src\\main\\java\\org\\example\\Menu.txt");
 
         // Example usage
@@ -288,5 +279,7 @@ public class Main {
 //        menu.add(item7);
 
         saveMenu(menu, "C:\\Users\\admin\\Documents\\CTAC-Program\\JavaRMS-Project\\src\\main\\java\\org\\example\\Menu.txt");
+=======
+>>>>>>> 4ada3676b9c50a2b6cfa6a62d75ad0245aed5414
     }
 }
