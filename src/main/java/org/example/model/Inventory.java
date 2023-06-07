@@ -1,4 +1,6 @@
-package org.example;
+package org.example.model;
+
+import org.example.model.Ingredient;
 
 import java.util.ArrayList;
 import java.util.List;

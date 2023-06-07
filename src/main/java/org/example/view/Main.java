@@ -1,11 +1,18 @@
+<<<<<<< HEAD:src/main/java/org/example/Main.java
 package org.example;
+=======
+package org.example.view;
+import org.example.controller.LoginService;
+import org.example.controller.OrderService;
+import org.example.model.*;
+>>>>>>> b456386a1ab48d9aeb04e26ec78e40d1cfe459c4:src/main/java/org/example/view/Main.java
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import static org.example.MenuItem.loadMenu;
-import static org.example.MenuItem.saveMenu;
+import static org.example.model.Customer.MenuItem.loadMenu;
+import static org.example.model.Customer.MenuItem.saveMenu;
 
 public class Main {
     public static Scanner input = new Scanner(System.in);
@@ -14,13 +21,13 @@ public class Main {
     public static double total = 0, pay;
     private static Scanner scanner;
 
-    private static void editItem(List<MenuItem> menu, Scanner scanner) {
+    private static void editItem(List<Customer.MenuItem> menu, Scanner scanner) {
     }
 
-    private static void removeItem(List<MenuItem> menu, Scanner scanner) {
+    private static void removeItem(List<Customer.MenuItem> menu, Scanner scanner) {
     }
 
-    private static void addItem(List<MenuItem> menu, Scanner scanner) {
+    private static void addItem(List<Customer.MenuItem> menu, Scanner scanner) {
     }
 
     public static void main(String[] args) {
@@ -243,16 +250,17 @@ public class Main {
             String statusString = scanner.nextLine();
             OrderService orderService = new OrderService();
             if (statusString.equalsIgnoreCase("ready")) {
-                System.out.println(orderService.updateStatus(Order.OrderStatus.READY));
+                System.out.println(orderService.updateStatus(OrderStatus.READY));
             } else if (statusString.equalsIgnoreCase("waiting")) {
-                System.out.println(orderService.updateStatus(Order.OrderStatus.WAITING));
+                System.out.println(orderService.updateStatus(OrderStatus.WAITING));
             } else if (statusString.equalsIgnoreCase("preparing")) {
-                System.out.println(orderService.updateStatus(Order.OrderStatus.PREPARING));
+                System.out.println(orderService.updateStatus(OrderStatus.PREPARING));
             }
         }
-        List<MenuItem> menu = loadMenu("C:\\Users\\admin\\Documents\\CTAC-Program\\JavaRMS-Project\\src\\main\\java\\org\\example\\Menu.txt");
+        List<Customer.MenuItem> menu = loadMenu("C:\\Users\\admin\\Documents\\CTAC-Program\\JavaRMS-Project\\src\\main\\java\\org\\example\\Menu.txt");
 
         // Example usage
+<<<<<<< HEAD:src/main/java/org/example/Main.java
         MenuItem item1 = new MenuItem("Hamburger", "A classic hamburger made with a juicy beef patty, served on a bun.", 7.0, 1.0, new ArrayList<>());
         MenuItem item2 = new MenuItem("Cheeseburger", "Our delicious hamburger topped with a slice of cheese, served on a bun.", 7.0, 2.0, new ArrayList<>());
         MenuItem item3 = new MenuItem("Chicken Sandwich", "A tender chicken fillet, seasoned and grilled to perfection, served on a bun.", 7.0, 1.0, new ArrayList<>());
@@ -260,6 +268,15 @@ public class Main {
         MenuItem item5 = new MenuItem("Tater Tots", "Bite-sized potato nuggets, crispy on the outside and fluffy on the inside.", 10.0, 1.0, new ArrayList<>());
         MenuItem item6 = new MenuItem("Vanilla Shake", "A creamy and smooth vanilla-flavored milkshake, perfect for a sweet treat.", 5.0, 1.5, new ArrayList<>());
         MenuItem item7 = new MenuItem("Choc Shake", "Indulge in a rich and chocolaty milkshake that will satisfy your chocolate cravings.", 5.0, 1.5, new ArrayList<>());
+=======
+        Customer.MenuItem item1 = new Customer.MenuItem("Item 1", "Description 1", 10.0, 9.99, new ArrayList<>());
+        Customer.MenuItem item2 = new Customer.MenuItem("Item 2", "Description 2", 15.0, 14.99, new ArrayList<>());
+        Customer.MenuItem item3 = new Customer.MenuItem("Item 3", "Description 3", 15.0, 14.99, new ArrayList<>());
+        Customer.MenuItem item4 = new Customer.MenuItem("Item 4", "Description 4", 15.0, 14.99, new ArrayList<>());
+        Customer.MenuItem item5 = new Customer.MenuItem("Item 5", "Description 5", 15.0, 14.99, new ArrayList<>());
+        Customer.MenuItem item6 = new Customer.MenuItem("Item 6", "Description 6", 15.0, 14.99, new ArrayList<>());
+        Customer.MenuItem item7 = new Customer.MenuItem("Item 7", "Description 7", 15.0, 14.99, new ArrayList<>());
+>>>>>>> b456386a1ab48d9aeb04e26ec78e40d1cfe459c4:src/main/java/org/example/view/Main.java
 
 //
 //        menu.add(item1);

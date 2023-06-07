@@ -1,6 +1,9 @@
-package org.example;
+package org.example.controller;
 
 import java.util.Scanner;
+
+import org.example.model.User;
+import org.example.model.UserRepository;
 import org.mindrot.jbcrypt.BCrypt;
 
 public class LoginService {
