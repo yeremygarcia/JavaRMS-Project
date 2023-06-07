@@ -1,7 +1,8 @@
-package org.example;
+package org.example.model;
 
 import java.util.HashMap;
 import java.util.Map;
+
 import org.mindrot.jbcrypt.BCrypt;
 
 public class UserRepository {

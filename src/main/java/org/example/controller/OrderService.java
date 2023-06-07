@@ -1,7 +1,6 @@
-package org.example;
+package org.example.controller;
 
-import org.example.Order;
-import org.example.OrderStatus;
+import org.example.model.Order;
 
 import java.util.ArrayList;
 import java.util.HashMap;

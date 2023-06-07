@@ -1,12 +1,14 @@
-package org.example;
+package org.example.controller;
+
+import org.example.model.Customer;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class MenuManager {
-    private Map<String, MenuItem> menuItems = new HashMap<>();
+    private Map<String, Customer.MenuItem> menuItems = new HashMap<>();
 
-    public void addItem(MenuItem item) {
+    public void addItem(Customer.MenuItem item) {
         menuItems.put(item.getItemName(), item);
     }
 
@@ -14,14 +16,14 @@ public class MenuManager {
         menuItems.remove(itemName);
     }
 
-    public void editItem(MenuItem item) {
+    public void editItem(Customer.MenuItem item) {
         // Update the existing item in the map.
         if (menuItems.containsKey(item.getItemName())) {
             menuItems.put(item.getItemName(), item);
         }
     }
 
-    public MenuItem getItem(String itemName) {
+    public Customer.MenuItem getItem(String itemName) {
         return menuItems.get(itemName);
     }
 }
