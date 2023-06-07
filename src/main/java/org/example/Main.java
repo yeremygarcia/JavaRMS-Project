@@ -249,7 +249,7 @@ public class Main {
                 System.out.println(orderService.updateStatus(Order.OrderStatus.PREPARING));
             }
 
-            List<MenuItem> menu = loadMenu("C:\\Users\\admin\\Documents\\CTAC-Program\\JavaRMS-Project\\src\\main\\java\\org\\example\\Menu.txt");
+            List<MenuItem> menu = loadMenu("C:\\Users\\klee9\\CTAC\\Day66\\Project\\JavaRMS-Project\\src\\main\\java\\org\\example\\Menu.txt");
 
             // Example usage
             MenuItem item1 = new MenuItem("Item 1", "Description 1", 10.0, 9.99, new ArrayList<>());
@@ -262,7 +262,7 @@ public class Main {
 
         }
 
-        List<MenuItem> menu = loadMenu("C:\\Users\\admin\\Documents\\CTAC-Program\\JavaRMS-Project\\src\\main\\java\\org\\example\\Menu.txt");
+        List<MenuItem> menu = loadMenu("C:\\Users\\klee9\\CTAC\\Day66\\Project\\JavaRMS-Project\\src\\main\\java\\org\\example\\Menu.txt");
 
         // Example usage
         MenuItem item1 = new MenuItem("Item 1", "Description 1", 10.0, 9.99, new ArrayList<>());
@@ -282,7 +282,7 @@ public class Main {
         menu.add(item6);
         menu.add(item7);
 
-        saveMenu(menu, "C:\\Users\\admin\\Documents\\CTAC-Program\\JavaRMS-Project\\src\\main\\java\\org\\example\\Menu.txt");
+        saveMenu(menu, "C:\\Users\\klee9\\CTAC\\Day66\\Project\\JavaRMS-Project\\src\\main\\java\\org\\example\\Menu.txt");
 
     }
 }
