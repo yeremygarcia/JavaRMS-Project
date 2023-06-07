@@ -13,6 +13,15 @@ public class Main {
     public static double total = 0, pay;
     private static Scanner scanner;
 
+    private static void editItem(List<MenuItem> menu, Scanner scanner) {
+    }
+
+    private static void removeItem(List<MenuItem> menu, Scanner scanner) {
+    }
+
+    private static void addItem(List<MenuItem> menu, Scanner scanner) {
+    }
+
     public static void main(String[] args) {
         UserRepository userRepository = new UserRepository();
         LoginService loginService = new LoginService(userRepository);
@@ -252,7 +261,28 @@ public class Main {
             saveMenu(menu, "Menu.txt");
 
         }
+
+        List<MenuItem> menu = loadMenu("C:\\Users\\admin\\Documents\\CTAC-Program\\JavaRMS-Project\\src\\main\\java\\org\\example\\Menu.txt");
+
+        // Example usage
+        MenuItem item1 = new MenuItem("Item 1", "Description 1", 10.0, 9.99, new ArrayList<>());
+        MenuItem item2 = new MenuItem("Item 2", "Description 2", 15.0, 14.99, new ArrayList<>());
+        MenuItem item3 = new MenuItem("Item 3", "Description 3", 15.0, 14.99, new ArrayList<>());
+        MenuItem item4 = new MenuItem("Item 4", "Description 4", 15.0, 14.99, new ArrayList<>());
+        MenuItem item5 = new MenuItem("Item 5", "Description 5", 15.0, 14.99, new ArrayList<>());
+        MenuItem item6 = new MenuItem("Item 6", "Description 6", 15.0, 14.99, new ArrayList<>());
+        MenuItem item7 = new MenuItem("Item 7", "Description 7", 15.0, 14.99, new ArrayList<>());
+
+
+        menu.add(item1);
+        menu.add(item2);
+        menu.add(item3);
+        menu.add(item4);
+        menu.add(item5);
+        menu.add(item6);
+        menu.add(item7);
+
+        saveMenu(menu, "C:\\Users\\admin\\Documents\\CTAC-Program\\JavaRMS-Project\\src\\main\\java\\org\\example\\Menu.txt");
+
     }
 }
-
-
