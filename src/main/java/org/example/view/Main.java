@@ -246,11 +246,11 @@ public class Main {
             String statusString = scanner.nextLine();
             OrderService orderService = new OrderService();
             if (statusString.equalsIgnoreCase("ready")) {
-                System.out.println(orderService.updateStatus(Order.OrderStatus.READY));
+                System.out.println(orderService.updateStatus(OrderStatus.READY));
             } else if (statusString.equalsIgnoreCase("waiting")) {
-                System.out.println(orderService.updateStatus(Order.OrderStatus.WAITING));
+                System.out.println(orderService.updateStatus(OrderStatus.WAITING));
             } else if (statusString.equalsIgnoreCase("preparing")) {
-                System.out.println(orderService.updateStatus(Order.OrderStatus.PREPARING));
+                System.out.println(orderService.updateStatus(OrderStatus.PREPARING));
             }
         }
         List<Customer.MenuItem> menu = loadMenu("C:\\Users\\admin\\Documents\\CTAC-Program\\JavaRMS-Project\\src\\main\\java\\org\\example\\Menu.txt");
