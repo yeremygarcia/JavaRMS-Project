@@ -7,9 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import static org.example.model.Customer.MenuItem.loadMenu;
-import static org.example.model.Customer.MenuItem.saveMenu;
-
 public class Main {
     public static Scanner input = new Scanner(System.in);
     public static int choice, quantity = 1;
@@ -17,14 +14,7 @@ public class Main {
     public static double total = 0, pay;
     private static Scanner scanner;
 
-    private static void editItem(List<Customer.MenuItem> menu, Scanner scanner) {
-    }
 
-    private static void removeItem(List<Customer.MenuItem> menu, Scanner scanner) {
-    }
-
-    private static void addItem(List<Customer.MenuItem> menu, Scanner scanner) {
-    }
 
     public static void main(String[] args) {
         UserRepository userRepository = new UserRepository();
@@ -253,26 +243,5 @@ public class Main {
                 System.out.println(orderService.updateStatus(OrderStatus.PREPARING));
             }
         }
-        List<Customer.MenuItem> menu = loadMenu("C:\\Users\\admin\\Documents\\CTAC-Program\\JavaRMS-Project\\src\\main\\java\\org\\example\\Menu.txt");
-
-        // Example usage
-        Customer.MenuItem item1 = new Customer.MenuItem("Item 1", "Description 1", 10.0, 9.99, new ArrayList<>());
-        Customer.MenuItem item2 = new Customer.MenuItem("Item 2", "Description 2", 15.0, 14.99, new ArrayList<>());
-        Customer.MenuItem item3 = new Customer.MenuItem("Item 3", "Description 3", 15.0, 14.99, new ArrayList<>());
-        Customer.MenuItem item4 = new Customer.MenuItem("Item 4", "Description 4", 15.0, 14.99, new ArrayList<>());
-        Customer.MenuItem item5 = new Customer.MenuItem("Item 5", "Description 5", 15.0, 14.99, new ArrayList<>());
-        Customer.MenuItem item6 = new Customer.MenuItem("Item 6", "Description 6", 15.0, 14.99, new ArrayList<>());
-        Customer.MenuItem item7 = new Customer.MenuItem("Item 7", "Description 7", 15.0, 14.99, new ArrayList<>());
-
-
-        menu.add(item1);
-        menu.add(item2);
-        menu.add(item3);
-        menu.add(item4);
-        menu.add(item5);
-        menu.add(item6);
-        menu.add(item7);
-
-        saveMenu(menu, "C:\\Users\\admin\\Documents\\CTAC-Program\\JavaRMS-Project\\src\\main\\java\\org\\example\\Menu.txt");
     }
 }
