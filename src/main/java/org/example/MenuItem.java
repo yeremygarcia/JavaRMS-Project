@@ -67,7 +67,7 @@ public class MenuItem {
 
     public static void saveMenu(List<MenuItem> menu, String fileName) {
         try {
-            FileWriter fileWriter = new FileWriter("C:\\Users\\admin\\Documents\\CTAC-Program\\JavaRMS-Project\\src\\main\\java\\org\\example\\Menu.txt");
+            FileWriter fileWriter = new FileWriter("C:\\Users\\admin\\Desktop\\JAVAProject-103\\JavaRMS-Project\\src\\main\\java\\org\\example\\Menu.txt");
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
 
             for (MenuItem item : menu) {
@@ -92,7 +92,7 @@ public class MenuItem {
     public static List<MenuItem> loadMenu(String fileName) {
         List<MenuItem> menu = new ArrayList<>();
         try {
-            FileReader fileReader = new FileReader("C:\\Users\\admin\\Documents\\CTAC-Program\\JavaRMS-Project\\src\\main\\java\\org\\example\\Menu.txt");
+            FileReader fileReader = new FileReader("C:\\Users\\admin\\Desktop\\JAVAProject-103\\JavaRMS-Project\\src\\main\\java\\org\\example\\Menu.txt");
             BufferedReader bufferedReader = new BufferedReader(fileReader);
 
             String line;

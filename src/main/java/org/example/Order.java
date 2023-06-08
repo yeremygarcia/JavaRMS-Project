@@ -11,7 +11,8 @@ public class Order {
     private final Date lastHandled;
     private int orderID;
     private int orderTableID;
-    enum OrderStatus {
+
+    public enum OrderStatus {
         WAITING,
         PREPARING,
         READY
@@ -66,6 +67,8 @@ public class Order {
 
     public int getOrderID() {
         return orderID;
+    }
+    public void setOrderID(int i) {
     }
 
     public void setOrderStatus(OrderStatus orderStatus) {
