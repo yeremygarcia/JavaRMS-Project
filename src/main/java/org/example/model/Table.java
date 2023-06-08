@@ -1,4 +1,7 @@
-package org.example;
+package org.example.model;
+
+import org.example.Customer;
+import org.example.TableStatus;
 
 public class Table {
     private int tableId;
@@ -12,6 +15,9 @@ public class Table {
         this.status = TableStatus.AVAILABLE;
     }
 
+    public Table() {
+
+    }
     // Getters and setters
 
     public int getTableId() {
