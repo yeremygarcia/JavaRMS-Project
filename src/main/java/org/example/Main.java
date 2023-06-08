@@ -1,13 +1,11 @@
 package org.example;
 
-import org.example.model.User;
+import org.example.model.*;
 import org.example.services.MenuService;
+import org.example.services.OrderService;
 import org.example.services.UserService;
 import org.example.services.TableManager;
 
-import java.sql.SQLOutput;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 
@@ -61,10 +59,53 @@ public class Main {
                     }
                     break;
 
-                // case 5: Process orders from customers
-                // Here, you would call appropriate methods from the OrderService to handle orders
+                case 5:
+                    if (currentUser != null && currentUser.getRole() == Role.STAFF) {
+                        // Get the customer's name
+                        System.out.print("Enter customer name: ");
+                        String customerName = scanner.nextLine();
+                        Customer customer = new Customer(customerName);
+
+                        // Display the menu
+                        menuService.displayMenu();
+
+                        // Order food
+                        Order order = new Order(orderService.getTotalOrders() + 1);
+                        while (true) {
+                            System.out.println("Enter item name to add to order (0 to finish ordering):");
+                            String itemName = scanner.nextLine();
+                            if (itemName.equals("0")) {
+                                break;
+                            }
+
+                            // Check if the item exists in the menu
+                            MenuItem item = menuService.getMenuItemByName(itemName);
+                            if (item == null) {
+                                System.out.println("Invalid item name.");
+                                continue;
+                            }
+
+                            // Get the quantity
+                            System.out.print("Enter quantity: ");
+                            int quantity = Integer.parseInt(scanner.nextLine());
+
+                            // Add the item to the order
+                            order.addItem(item, quantity);
+                            System.out.println("Added " + quantity + "x " + item.getName() + " to the order.");
+                        }
+
+                        // Add the order to the order service
+                        orderService.addOrder(order);
+
+                        // Process the order
+                        orderService.processOrder(order.getOrderID());
+                    } else {
+                        System.out.println("You don't have permission to perform this action.");
+                    }
+                    break;
 
                 case 6:
+                    tableManager.displayTableStatus();
                     System.out.println("Enter table ID: ");
                     int tableId = Integer.parseInt(scanner.nextLine());
                     System.out.print("Enter customer name: ");
@@ -75,7 +116,6 @@ public class Main {
 
                     tableManager.displayTableStatus();
                     break;
-
 
                 // case 7: Manage the inventory
                 // Here, you would call appropriate methods from the InventoryService to manage the inventory

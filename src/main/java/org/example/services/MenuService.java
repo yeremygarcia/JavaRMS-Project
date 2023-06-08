@@ -244,7 +244,7 @@ public class MenuService {
     }
 
 
-    private void displayMenu() {
+    public void displayMenu() {
         System.out.println("\nMENU");
 //        checkMenuFileExistence();
         loadMenuItemsFromFile();
@@ -253,5 +253,14 @@ public class MenuService {
             System.out.println(item.toString());
             System.out.println("--------------------");
         }
+    }
+
+    public MenuItem getMenuItemByName(String itemName) {
+        for (MenuItem item : menuItems) {
+            if (item.getName().equalsIgnoreCase(itemName)) {
+                return item;
+            }
+        }
+        return null;
     }
 }

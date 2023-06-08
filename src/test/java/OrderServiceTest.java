@@ -1,5 +1,5 @@
-import org.example.Order;
-import org.example.OrderService;
+import org.example.model.Order;
+import org.example.services.OrderService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

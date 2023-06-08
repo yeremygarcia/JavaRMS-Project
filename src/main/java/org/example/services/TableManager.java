@@ -1,6 +1,6 @@
 package org.example.services;
 
-import org.example.Customer;
+import org.example.model.Customer;
 import org.example.TableStatus;
 import org.example.model.Table;
 
@@ -38,6 +38,10 @@ public class TableManager {
 
             System.out.println("Table " + tableId + ", Status: " + status + ", Assigned Customer: " + customerName);
         }
+    }
+
+    public Table getTableByID(int tableID) {
+        return tables.get(tableID);
     }
 }
 

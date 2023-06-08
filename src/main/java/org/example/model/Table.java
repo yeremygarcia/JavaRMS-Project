@@ -1,6 +1,5 @@
 package org.example.model;
 
-import org.example.Customer;
 import org.example.TableStatus;
 
 public class Table {

@@ -1,4 +1,4 @@
-package org.example;
+package org.example.model;
 
 import org.example.OrderStatus;
 import org.example.model.MenuItem;
@@ -8,16 +8,16 @@ import java.util.*;
 
 public class Order {
     private int orderID;
-    private int orderTableID;
+//    private int orderTableID;
     private double totalPrice;
     private OrderStatus orderStatus;
     private Map<MenuItem, Integer> itemsOrdered;
     private Date lastHandled;
 
 
-    public Order(int orderID, int orderTableID) {
+    public Order(int orderID) {
         this.orderID = orderID;
-        this.orderTableID = orderTableID;
+//        this.orderTableID = orderTableID;
         this.totalPrice = 0.0;
         this.orderStatus = OrderStatus.WAITING;
         this.itemsOrdered = new HashMap<>();
@@ -28,9 +28,9 @@ public class Order {
         return orderID;
     }
 
-    public int getOrderTableID() {
-        return orderTableID;
-    }
+//    public int getOrderTableID() {
+//        return orderTableID;
+//    }
 
     public double getTotalPrice() {
         return totalPrice;
@@ -76,7 +76,6 @@ public class Order {
     public String toString() {
         return "Order{" +
                 "orderID=" + orderID +
-                ", orderTableID=" + orderTableID +
                 ", totalPrice=" + totalPrice +
                 ", orderStatus=" + orderStatus +
                 ", itemsOrdered=" + itemsOrdered +
