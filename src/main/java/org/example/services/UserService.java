@@ -10,7 +10,7 @@ import org.mindrot.jbcrypt.BCrypt;
 
 public class UserService {
     private Map<String, User> users;
-
+    private User currentUser;
     private Scanner scanner;
 
     public UserService() {
@@ -28,6 +28,10 @@ public class UserService {
 
     public User getUserByUsername(String username) {
         return users.get(username);
+    }
+
+    public User getCurrentUser() {
+        return currentUser;
     }
 
     public void registerUser(Role role) {
@@ -86,6 +90,7 @@ public class UserService {
 
         if (user != null && verifyPassword(password, user.getPassword())) {
             // User is logged in successfully
+            currentUser = user;
             System.out.println("Logged in as " + username);
         } else {
             // Invalid username or password
@@ -104,13 +109,13 @@ public class UserService {
         return BCrypt.hashpw(password, salt);
     }
 
-    private void logoutUser() {
+    public void logoutUser() {
         // Logic for user logout
         // Perform any necessary cleanup or session management
         System.out.println("Logged out");
     }
 
-    private void exitApplication() {
+    public void exitApplication() {
         // Logic to exit the application
         System.out.println("Exiting the application");
         System.exit(0);

@@ -62,10 +62,22 @@ public class MenuItem {
 
     @Override
     public String toString() {
-        return "Name: " + getName() +
-                "\nDescription: " + getDescription() +
-                "\nPrice: $" + getPrice() +
-                "\nPrep Time: " + getPreparationTime() + " minutes" +
-                "\nIngredients: " + getIngredients();
+        StringBuilder sb = new StringBuilder();
+        sb.append("Name: ").append(getName()).append("\n");
+        sb.append("Description: ").append(getDescription()).append("\n");
+        sb.append("Price: $").append(getPrice()).append("\n");
+        sb.append("Prep Time: ").append(getPreparationTime()).append(" minutes").append("\n");
+        sb.append("Ingredients: ");
+
+        if (!getIngredients().isEmpty()) {
+            sb.append(getIngredients().get(0));
+
+            for (int i = 1; i < getIngredients().size(); i++) {
+                sb.append(", ").append(getIngredients().get(i));
+            }
+        }
+
+        return sb.toString();
     }
+
 }

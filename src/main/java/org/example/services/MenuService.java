@@ -13,7 +13,6 @@ public class MenuService {
     private Scanner scanner;
     private List<MenuItem> menuItems;
     private static final String MENU_FILE_PATH = "menu.txt";
-    private User loggedInUser;
 
     public MenuService() {
         this.scanner = new Scanner(System.in);
@@ -213,6 +212,7 @@ public class MenuService {
 
     public void loadMenuItemsFromFile() {
 //        System.out.println("loadMenuItemsFromFile() called");
+        menuItems.clear();
         try (BufferedReader reader = new BufferedReader(new FileReader(MENU_FILE_PATH))) {
             String line;
             while ((line = reader.readLine()) != null) {
