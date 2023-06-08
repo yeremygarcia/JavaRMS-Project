@@ -12,7 +12,7 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
-           Scanner scanner = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
 
         // Declare service classes for different components of the application
         UserService userService = new UserService();
@@ -60,16 +60,16 @@ public class Main {
                     break;
 
                 case 5:
-                    if (currentUser != null && currentUser.getRole() == Role.STAFF) {
-                        // Get the customer's name
+                    if (currentUser != null && (currentUser.getRole() == Role.STAFF || currentUser.getRole() == Role.MANAGER)) {
+                        // ASK FOR CUSTOMER NAME
                         System.out.print("Enter customer name: ");
                         String customerName = scanner.nextLine();
                         Customer customer = new Customer(customerName);
 
-                        // Display the menu
+                        // DISPLAY MENU
                         menuService.displayMenu();
 
-                        // Order food
+                        // ORDERING
                         Order order = new Order(orderService.getTotalOrders() + 1);
                         while (true) {
                             System.out.println("Enter item name to add to order (0 to finish ordering):");
@@ -78,26 +78,21 @@ public class Main {
                                 break;
                             }
 
-                            // Check if the item exists in the menu
                             MenuItem item = menuService.getMenuItemByName(itemName);
                             if (item == null) {
                                 System.out.println("Invalid item name.");
                                 continue;
                             }
 
-                            // Get the quantity
                             System.out.print("Enter quantity: ");
                             int quantity = Integer.parseInt(scanner.nextLine());
 
-                            // Add the item to the order
                             order.addItem(item, quantity);
                             System.out.println("Added " + quantity + "x " + item.getName() + " to the order.");
                         }
 
-                        // Add the order to the order service
                         orderService.addOrder(order);
 
-                        // Process the order
                         orderService.processOrder(order.getOrderID());
                     } else {
                         System.out.println("You don't have permission to perform this action.");
@@ -117,8 +112,13 @@ public class Main {
                     tableManager.displayTableStatus();
                     break;
 
-                // case 7: Manage the inventory
-                // Here, you would call appropriate methods from the InventoryService to manage the inventory
+                case 7:
+                    if (currentUser != null && currentUser.getRole() == Role.MANAGER) {
+                        menuService.manageInventory();
+                    } else {
+                        System.out.println("You don't have permission to perform this action.");
+                    }
+                    break;
 
                 // case 8: Generate a sales report
                 // Here, you would call a method from the SalesService to generate a sales report

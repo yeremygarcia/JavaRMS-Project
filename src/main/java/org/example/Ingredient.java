@@ -31,22 +31,26 @@ public class Ingredient {
     public int getThreshold() {
         return threshold;
     }
-    public static void main(String[] args) {
-        Ingredient bun = new Ingredient("bun", 20, 15);
-        Ingredient patty = new Ingredient("patty", 40, 25);
-        Ingredient pickle = new Ingredient("pickle", 100, 75);
-        Ingredient lettuce = new Ingredient("lettuce", 100, 65);
-        Ingredient tomatoes = new Ingredient("tomatoes", 80, 60);
-        Ingredient potatoes = new Ingredient("potatoes", 200, 100);
-        Ingredient cheese = new Ingredient("cheese", 90, 70);
+    public boolean isRunningLow() {
+        return quantity <= threshold;
+    }
 
-        System.out.println(bun);
-        System.out.println(patty);
-        System.out.println(pickle);
-        System.out.println(lettuce);
-        System.out.println(tomatoes);
+    public static void main(String[] args) {
+        Ingredient potatoes = new Ingredient("potatoes", 200, 100);
+        Ingredient oil = new Ingredient("oil", 20, 15);
+        Ingredient salt = new Ingredient("salt", 40, 25);
+        Ingredient beefPatty = new Ingredient("beef patty", 100, 75);
+        Ingredient bun = new Ingredient("bun", 100, 65);
+        Ingredient vanillaIceCream = new Ingredient("vanilla ice cream", 80, 60);
+        Ingredient milk = new Ingredient("milk", 90, 70);
+
         System.out.println(potatoes);
-        System.out.println(cheese);
+        System.out.println(oil);
+        System.out.println(salt);
+        System.out.println(beefPatty);
+        System.out.println(bun);
+        System.out.println(vanillaIceCream);
+        System.out.println(milk);
     }
 }
 

@@ -2,6 +2,9 @@ package org.example.services;
 
 import org.example.OrderStatus;
 import org.example.model.Order;
+import org.example.Inventory;
+import org.example.model.MenuItem;
+
 
 import java.util.*;
 
@@ -9,11 +12,21 @@ public class OrderService {
     private List<Order> orderList;
     private Map<Integer, Order> activeOrders;
     private int totalOrders;
+    private Inventory inventory;
 
     public OrderService() {
         this.orderList = new ArrayList<>();
         this.activeOrders = new HashMap<>();
         this.totalOrders = 0;
+        this.inventory = new Inventory();
+    }
+
+    public Inventory getInventory() {
+        return inventory;
+    }
+
+    public void setInventory(Inventory inventory) {
+        this.inventory = inventory;
     }
 
     public void addOrder(Order order) {
@@ -70,6 +83,14 @@ public class OrderService {
 
             // Process the payment
             processPayment(orderID, paymentAmount);
+
+            // Update ingredient quantities
+            for (Map.Entry<MenuItem, Integer> entry : order.getItemsOrdered().entrySet()) {
+                MenuItem menuItem = entry.getKey();
+                int quantity = entry.getValue();
+                inventory.updateIngredientQuantity(menuItem.getName(), quantity);
+            }
+            inventory.checkLowIngredients();
         } else {
             System.out.println("Invalid order ID or the order has already been processed.");
         }
