@@ -8,7 +8,7 @@ import java.util.*;
 
 public class Order {
     private int orderID;
-//    private int orderTableID;
+    //    private int orderTableID;
     private double totalPrice;
     private OrderStatus orderStatus;
     private Map<MenuItem, Integer> itemsOrdered;
