@@ -3,7 +3,10 @@ package org.example.services;
 import org.example.OrderStatus;
 import org.example.model.Order;
 
+import javax.print.DocFlavor;
 import java.util.*;
+
+import static org.example.Colors.*;
 
 public class OrderService {
     private List<Order> orderList;
@@ -57,21 +60,21 @@ public class OrderService {
         if (order != null && order.getOrderStatus() == OrderStatus.WAITING) {
             // Process the order
             order.updateOrderStatus(OrderStatus.READY);
-            System.out.println("Order " + orderID + " has been processed and is ready for payment.");
+            System.out.println(ANSI_PURPLE + "Order " + orderID + " has been processed and is ready for payment." + ANSI_RESET);
 
             // Calculate the total price
             double totalPrice = order.getTotalPrice();
-            System.out.println("Total price: $" + totalPrice);
+            System.out.println(ANSI_PURPLE + "Total price: $" + totalPrice + ANSI_RESET);
 
             // Prompt for payment
             Scanner scanner = new Scanner(System.in);
-            System.out.print("Enter payment amount: $");
+            System.out.print(ANSI_PURPLE + "Enter payment amount: $" + ANSI_RESET);
             double paymentAmount = scanner.nextDouble();
 
             // Process the payment
             processPayment(orderID, paymentAmount);
         } else {
-            System.out.println("Invalid order ID or the order has already been processed.");
+            System.out.println(ANSI_RED + "Invalid order ID or the order has already been processed." + ANSI_RESET);
         }
     }
 
@@ -83,13 +86,13 @@ public class OrderService {
             if (amount >= totalPrice) {
                 // Payment successful
                 double change = amount - totalPrice;
-                System.out.println("Payment processed successfully. Change: $" + change);
+                System.out.println(ANSI_BLUE + "Payment processed successfully. Change: $" + change + ANSI_RESET);
                 order.updateOrderStatus(OrderStatus.PAID);
             } else {
-                System.out.println("Insufficient payment amount. Please provide the correct amount.");
+                System.out.println(ANSI_RED + "Insufficient payment amount. Please provide the correct amount." + ANSI_RESET);
             }
         } else {
-            System.out.println("Invalid order ID or the order is not yet completed.");
+            System.out.println(ANSI_RED + "Invalid order ID or the order is not yet completed." + ANSI_RESET);
         }
     }
 }

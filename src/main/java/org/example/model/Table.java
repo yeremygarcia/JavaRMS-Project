@@ -3,10 +3,11 @@ package org.example.model;
 import org.example.TableStatus;
 
 public class Table {
+    public Table customer;
     private int tableId;
     private int tableSize;
     private TableStatus status;
-    private Customer assignedCustomer;
+    private String assignedCustomer;
 
     public Table(int tableId, int tableSize) {
         this.tableId = tableId;
@@ -17,6 +18,7 @@ public class Table {
     public Table() {
 
     }
+
     // Getters and setters
 
     public int getTableId() {
@@ -35,11 +37,11 @@ public class Table {
         this.status = status;
     }
 
-    public Customer getAssignedCustomer() {
+    public String getAssignedCustomer() {
         return assignedCustomer;
     }
 
-    public void setAssignedCustomer(Customer assignedCustomer) {
+    public void setAssignedCustomer(String assignedCustomer) {
         this.assignedCustomer = assignedCustomer;
     }
 }

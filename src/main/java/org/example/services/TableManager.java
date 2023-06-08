@@ -7,6 +7,8 @@ import org.example.model.Table;
 import java.util.HashMap;
 import java.util.Map;
 
+import static org.example.Colors.*;
+
 public class TableManager {
     private Map<Integer, Table> tables;
 
@@ -22,13 +24,22 @@ public class TableManager {
         Table table = tables.get(tableId);
         if (table != null && table.getStatus() == TableStatus.AVAILABLE) {
             table.setStatus(TableStatus.OCCUPIED);
-            table.setAssignedCustomer(customer);
+            table.setAssignedCustomer(String.valueOf(customer));
             System.out.println("Assigned customer " + customer.getName() + " to table " + tableId);
         } else {
             System.out.println("Table " + tableId + " is not available for assignment.");
         }
     }
-
+    public void reserveTable(int tableId, Customer customer) {
+        Table table = tables.get(tableId);
+        if (table != null && table.getStatus() == TableStatus.AVAILABLE) {
+            table.setStatus(TableStatus.RESERVED);
+            table.setAssignedCustomer(String.valueOf(customer));
+            System.out.println(ANSI_YELLOW + "Table " + tableId + " has been reserved for " + customer.getName() + ANSI_RESET);
+        } else {
+            System.out.println(ANSI_RED + "Table " + tableId + " is not available for reservation." + ANSI_RESET);
+        }
+    }
     public void displayTableStatus() {
         for (Map.Entry<Integer, Table> entry : tables.entrySet()) {
             int tableId = entry.getKey();
@@ -44,4 +55,3 @@ public class TableManager {
         return tables.get(tableID);
     }
 }
-

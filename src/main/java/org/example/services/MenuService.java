@@ -9,33 +9,33 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
+import static org.example.Colors.*;
+
 public class MenuService {
     private Scanner scanner;
     private List<MenuItem> menuItems;
-    private static final String MENU_FILE_PATH = "menu.txt";
+    private static final String MENU_FILE_PATH = "C:\\Users\\admin\\Desktop\\JAVAProject\\JavaRMS-Project\\menu.txt";
 
     public MenuService() {
         this.scanner = new Scanner(System.in);
         this.menuItems = new ArrayList<>();
     }
-
     public List<MenuItem> getMenuItems() {
         return menuItems;
     }
-
     public void showMainMenu() {
-        System.out.println("1. Log in");
+        System.out.println(ANSI_MAGENTA + "1. Log in");
         System.out.println("2. Register Manager");
         System.out.println("3. Register Staff");
         System.out.println("4. Manage Menu");
         System.out.println("5. Process Order");
         System.out.println("6. Manage Table");
-        System.out.println("7. Manage Inventory");
-        System.out.println("8. Generate Sales Report");
-        System.out.println("9. Log out");
-        System.out.println("0. Exit");
+        System.out.println("7. Reserved Table");
+        System.out.println("8. Manage Inventory");
+        System.out.println("9. Generate Sales Report");
+        System.out.println("10. Log out");
+        System.out.println("11. Exit" + ANSI_RESET);
     }
-
     public int getChoice() {
         int choice = 0;
         try {
@@ -44,11 +44,10 @@ public class MenuService {
                 throw new NumberFormatException();
             }
         } catch (NumberFormatException e) {
-            System.out.println("Invalid input. Please enter a number from 0 to 9.");
+            System.out.println("Invalid input. Please enter a number from 1 to 11.");
         }
         return choice;
     }
-
     public int showMainMenuAndGetChoice() {
         // Display the main menu
         showMainMenu();
@@ -58,7 +57,6 @@ public class MenuService {
 
         return choice;
     }
-
     public void manageMenu() {
         while (true) {
             // Show the menu management menu and get the user's choice
@@ -86,18 +84,17 @@ public class MenuService {
                     return;
 
                 default:
-                    System.out.println("Invalid choice. Please select a valid option.");
+                    System.out.println(ANSI_RED + "Invalid choice. Please select a valid option." + ANSI_RESET);
                     break;
             }
         }
     }
-
     private void showMenuManagementMenu() {
-        System.out.println("1. Add Menu Item");
+        System.out.println(ANSI_MAGENTA + "1. Add Menu Item");
         System.out.println("2. Remove Menu Item");
         System.out.println("3. Edit Menu Item");
         System.out.println("4. Display Menu");
-        System.out.println("5. Exit");
+        System.out.println("5. Exit" + ANSI_RESET);
     }
 
     private int getMenuManagementChoice() {
@@ -108,13 +105,12 @@ public class MenuService {
                 throw new NumberFormatException();
             }
         } catch (NumberFormatException e) {
-            System.out.println("Invalid input. Please enter a number from 1 to 4.");
+            System.out.println(ANSI_RED + "Invalid input. Please enter a number from 1 to 4." + ANSI_RESET);
         }
         return choice;
     }
-
     private void addMenuItem() {
-        System.out.print("Enter the name of the new menu item: ");
+        System.out.print(ANSI_CYAN + "Enter the name of the new menu item: ");
         String name = scanner.nextLine();
         System.out.print("Enter the description of the new menu item: ");
         String description = scanner.nextLine();
@@ -130,7 +126,7 @@ public class MenuService {
 
         List<String> ingredients = new ArrayList<>();
         for (int i = 0; i < ingredientCount; i++) {
-            System.out.print("Enter ingredient #" + (i + 1) + ": ");
+            System.out.print("Enter ingredient #" + (i + 1) + ": " + ANSI_RESET);
             String ingredient = scanner.nextLine();
             ingredients.add(ingredient);
         }
@@ -140,7 +136,6 @@ public class MenuService {
         saveMenuItemsToFile();
         System.out.println("New menu item added successfully.");
     }
-
     private void removeMenuItem() {
         System.out.print("Enter the index of the menu item to remove: ");
         int index = scanner.nextInt();
@@ -154,7 +149,6 @@ public class MenuService {
             System.out.println("Invalid menu item index.");
         }
     }
-
     private void editMenuItem() {
         System.out.print("Enter the index of the menu item to edit: ");
         int index = scanner.nextInt();
@@ -187,7 +181,6 @@ public class MenuService {
             System.out.println("Invalid menu item index.");
         }
     }
-
     public void saveMenuItemsToFile() {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(MENU_FILE_PATH))) {
             for (MenuItem item : menuItems) {
@@ -195,12 +188,11 @@ public class MenuService {
                         + "," + item.getPreparationTime() + "," + item.getIngredients());
                 writer.newLine(); // Add a new line after each item
             }
-            System.out.println("Menu items saved to file.");
+            System.out.println(ANSI_YELLOW + "Menu items saved to file." + ANSI_RESET);
         } catch (IOException e) {
-            System.out.println("Failed to save menu items to file: " + e.getMessage());
+            System.out.println(ANSI_RED + "Failed to save menu items to file: " + e.getMessage() + ANSI_RESET);
         }
     }
-
     public void checkMenuFileExistence() {
         File file = new File(MENU_FILE_PATH);
         if (file.exists()) {

@@ -6,13 +6,17 @@ import org.example.services.OrderService;
 import org.example.services.UserService;
 import org.example.services.TableManager;
 
+
 import java.util.Scanner;
+
+import static org.example.Colors.*;
 
 
 public class Main {
 
     public static void main(String[] args) {
-           Scanner scanner = new Scanner(System.in);
+
+        Scanner scanner = new Scanner(System.in);
 
         // Declare service classes for different components of the application
         UserService userService = new UserService();
@@ -43,7 +47,7 @@ public class Main {
                     if (currentUser != null && currentUser.getRole() == Role.MANAGER) {
                         userService.registerUser(Role.MANAGER);
                     } else {
-                        System.out.println("You don't have permission to perform this action.");
+                        System.out.println(ANSI_RED + "You don't have permission to perform this action." + ANSI_RESET);
                     }
                     break;
 
@@ -55,14 +59,14 @@ public class Main {
                     if (currentUser != null && currentUser.getRole() == Role.MANAGER) {
                         menuService.manageMenu();
                     } else {
-                        System.out.println("You don't have permission to perform this action.");
+                        System.out.println(ANSI_RED + "You don't have permission to perform this action." + ANSI_RESET);
                     }
                     break;
 
                 case 5:
                     if (currentUser != null && currentUser.getRole() == Role.STAFF) {
                         // Get the customer's name
-                        System.out.print("Enter customer name: ");
+                        System.out.print(ANSI_CYAN + "Enter customer name: " + ANSI_RESET);
                         String customerName = scanner.nextLine();
                         Customer customer = new Customer(customerName);
 
@@ -72,7 +76,7 @@ public class Main {
                         // Order food
                         Order order = new Order(orderService.getTotalOrders() + 1);
                         while (true) {
-                            System.out.println("Enter item name to add to order (0 to finish ordering):");
+                            System.out.println(ANSI_PURPLE + "Enter item name to add to order (0 to finish ordering):" + ANSI_RESET);
                             String itemName = scanner.nextLine();
                             if (itemName.equals("0")) {
                                 break;
@@ -81,17 +85,17 @@ public class Main {
                             // Check if the item exists in the menu
                             MenuItem item = menuService.getMenuItemByName(itemName);
                             if (item == null) {
-                                System.out.println("Invalid item name.");
+                                System.out.println(ANSI_RED + "Invalid item name." + ANSI_RESET);
                                 continue;
                             }
 
                             // Get the quantity
-                            System.out.print("Enter quantity: ");
+                            System.out.print(ANSI_YELLOW + "Enter quantity: " + ANSI_RESET);
                             int quantity = Integer.parseInt(scanner.nextLine());
 
                             // Add the item to the order
                             order.addItem(item, quantity);
-                            System.out.println("Added " + quantity + "x " + item.getName() + " to the order.");
+                            System.out.println(ANSI_CYAN + "Added " + quantity + "x " + item.getName() + " to the order." + ANSI_RESET);
                         }
 
                         // Add the order to the order service
@@ -100,7 +104,7 @@ public class Main {
                         // Process the order
                         orderService.processOrder(order.getOrderID());
                     } else {
-                        System.out.println("You don't have permission to perform this action.");
+                        System.out.println(ANSI_RED + "You don't have permission to perform this action." + ANSI_RESET);
                     }
                     break;
 
@@ -113,8 +117,18 @@ public class Main {
                     Customer customer = new Customer(customerName);
 
                     tableManager.assignCustomerToTable(tableId, customer);
-
                     tableManager.displayTableStatus();
+                    break;
+                case 7:
+                    System.out.print(ANSI_CYAN + "Enter the table ID to reserve: ");
+                    int tableIdToReserve = Integer.parseInt(scanner.nextLine());
+                    System.out.print("Customer name for reservation: " + ANSI_RESET);
+                    String reserveName = scanner.nextLine();
+                    Customer customerReserved = new Customer(reserveName);
+
+                    tableManager.reserveTable(tableIdToReserve, customerReserved);
+                    tableManager.displayTableStatus();
+
                     break;
 
                 // case 7: Manage the inventory
