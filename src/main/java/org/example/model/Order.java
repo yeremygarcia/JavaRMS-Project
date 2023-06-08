@@ -32,12 +32,21 @@ public class Order {
 //        return orderTableID;
 //    }
 
+
+    public void setOrderID(int orderID) {
+        this.orderID = orderID;
+    }
+
     public double getTotalPrice() {
         return totalPrice;
     }
 
     public OrderStatus getOrderStatus() {
         return orderStatus;
+    }
+
+    public void setOrderStatus(OrderStatus orderStatus) {
+        this.orderStatus = orderStatus;
     }
 
     public Map<MenuItem, Integer> getItemsOrdered() {
