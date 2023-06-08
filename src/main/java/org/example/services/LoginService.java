@@ -1,5 +1,7 @@
-package org.example;
+package org.example.services;
 
+import org.example.model.User;
+import org.example.UserRepository;
 import org.mindrot.jbcrypt.BCrypt;
 
 import java.util.Scanner;

@@ -1,4 +1,6 @@
-package org.example;
+package org.example.model;
+
+import org.example.Role;
 
 public class User {
     private String username;
