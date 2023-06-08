@@ -1,0 +1,3 @@
+fries,crinkle cut,6.0,2.0,[potatoes, oil, salt]
+burger,award winning burger,6.0,8.0,[beef patty, bun]
+vanilla shake,tasty vanilla milkshake,2.0,3.0,[vanilla ice cream, milk]

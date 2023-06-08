@@ -15,16 +15,16 @@ public class MenuItem {
     public MenuItem(String itemName, String itemDescription, double preparationTime, double itemPrice, List<String> ingredients) {
         this.itemName = itemName;
         this.itemDescription = itemDescription;
-        this.preparationTime = preparationTime;
         this.itemPrice = itemPrice;
+        this.preparationTime = preparationTime;
         this.ingredients = ingredients;
     }
 
-    public String getItemName() {
+    public String getName() {
         return itemName;
     }
 
-    public String getItemDescription() {
+    public String getDescription() {
         return itemDescription;
     }
 
@@ -32,7 +32,7 @@ public class MenuItem {
         return preparationTime;
     }
 
-    public double getItemPrice() {
+    public double getPrice() {
         return itemPrice;
     }
 
@@ -62,10 +62,22 @@ public class MenuItem {
 
     @Override
     public String toString() {
-        return "Name: " + getItemName() +
-                "\nDescription: " + getItemDescription() +
-                "\nPrice: $" + getItemPrice() +
-                "\nPrep Time: " + getPreparationTime() + " minutes" +
-                "\nIngredients: " + getIngredients();
+        StringBuilder sb = new StringBuilder();
+        sb.append("Name: ").append(getName()).append("\n");
+        sb.append("Description: ").append(getDescription()).append("\n");
+        sb.append("Price: $").append(getPrice()).append("\n");
+        sb.append("Prep Time: ").append(getPreparationTime()).append(" minutes").append("\n");
+        sb.append("Ingredients: ");
+
+        if (!getIngredients().isEmpty()) {
+            sb.append(getIngredients().get(0));
+
+            for (int i = 1; i < getIngredients().size(); i++) {
+                sb.append(", ").append(getIngredients().get(i));
+            }
+        }
+
+        return sb.toString();
     }
+
 }

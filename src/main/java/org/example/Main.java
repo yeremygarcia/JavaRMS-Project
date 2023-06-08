@@ -1,7 +1,6 @@
 package org.example;
 
-
-import org.example.model.Table;
+import org.example.model.User;
 import org.example.services.MenuService;
 import org.example.services.UserService;
 import org.example.services.TableManager;
@@ -23,14 +22,18 @@ public class Main {
         MenuService menuService = new MenuService();
         OrderService orderService = new OrderService();
         TableManager tableManager = new TableManager();
-        Table table = new Table();
 
 
 //        SalesService salesService = new SalesService();
 
+//        menuService.loadMenuItemsFromFile();
+
         while (true) {
             // Show the main menu and get the user's choice
             int choice = menuService.showMainMenuAndGetChoice();
+
+            // Check if a user is logged in
+            User currentUser = userService.getCurrentUser();
 
             // Use a switch statement to execute the action corresponding to the user's choice
             switch (choice) {
@@ -39,7 +42,11 @@ public class Main {
                     break;
 
                 case 2:
-                    userService.registerUser(Role.MANAGER);
+                    if (currentUser != null && currentUser.getRole() == Role.MANAGER) {
+                        userService.registerUser(Role.MANAGER);
+                    } else {
+                        System.out.println("You don't have permission to perform this action.");
+                    }
                     break;
 
                 case 3:
@@ -47,7 +54,11 @@ public class Main {
                     break;
 
                 case 4:
-                    menuService.manageMenu();
+                    if (currentUser != null && currentUser.getRole() == Role.MANAGER) {
+                        menuService.manageMenu();
+                    } else {
+                        System.out.println("You don't have permission to perform this action.");
+                    }
                     break;
 
                 // case 5: Process orders from customers
@@ -72,11 +83,14 @@ public class Main {
                 // case 8: Generate a sales report
                 // Here, you would call a method from the SalesService to generate a sales report
 
-                // case 9: Log out the current user
-                // Here, you would call a method from the UserService to handle user logout
+                case 9:
+                    userService.logoutUser();
+                    break;
 
-                // case 0: Exit the application
-                // Here, you would exit the while loop and therefore end the application
+                case 0:
+                    userService.exitApplication();
+                    break;
+
 
                 default:
                     // Handle an invalid choice
