@@ -1,17 +1,31 @@
 package org.example;
 
 
+import org.example.model.Table;
 import org.example.services.MenuService;
 import org.example.services.UserService;
+import org.example.services.TableManager;
+
+import java.sql.SQLOutput;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
 
 public class Main {
 
     public static void main(String[] args) {
+           Scanner scanner = new Scanner(System.in);
+
         // Declare service classes for different components of the application
         UserService userService = new UserService();
 //        InventoryService inventoryService = new InventoryService();
         MenuService menuService = new MenuService();
         OrderService orderService = new OrderService();
+        TableManager tableManager = new TableManager();
+        Table table = new Table();
+
+
 //        SalesService salesService = new SalesService();
 
         while (true) {
@@ -39,8 +53,18 @@ public class Main {
                 // case 5: Process orders from customers
                 // Here, you would call appropriate methods from the OrderService to handle orders
 
-                // case 6: Manage tables in the restaurant
-                // Here, you would call appropriate methods to manage tables
+                case 6:
+                    System.out.println("Enter table ID: ");
+                    int tableId = Integer.parseInt(scanner.nextLine());
+                    System.out.print("Enter customer name: ");
+                    String customerName = scanner.nextLine();
+                    Customer customer = new Customer(customerName);
+
+                    tableManager.assignCustomerToTable(tableId, customer);
+
+                    tableManager.displayTableStatus();
+                    break;
+
 
                 // case 7: Manage the inventory
                 // Here, you would call appropriate methods from the InventoryService to manage the inventory
@@ -61,29 +85,5 @@ public class Main {
                     break;
             }
         }
-<<<<<<< HEAD
-        List<MenuItem> menu = loadMenu("C:\\Users\\admin\\Desktop\\JAVAProject-103\\JavaRMS-Project\\src\\main\\java\\org\\example\\Menu.txt");
-
-        // Example usage
-        MenuItem item1 = new MenuItem("Item 1", "Description 1", 10.0, 9.99, new ArrayList<>());
-        MenuItem item2 = new MenuItem("Item 2", "Description 2", 15.0, 14.99, new ArrayList<>());
-        MenuItem item3 = new MenuItem("Item 3", "Description 3", 15.0, 14.99, new ArrayList<>());
-        MenuItem item4 = new MenuItem("Item 4", "Description 4", 15.0, 14.99, new ArrayList<>());
-        MenuItem item5 = new MenuItem("Item 5", "Description 5", 15.0, 14.99, new ArrayList<>());
-        MenuItem item6 = new MenuItem("Item 6", "Description 6", 15.0, 14.99, new ArrayList<>());
-        MenuItem item7 = new MenuItem("Item 7", "Description 7", 15.0, 14.99, new ArrayList<>());
-
-
-        menu.add(item1);
-        menu.add(item2);
-        menu.add(item3);
-        menu.add(item4);
-        menu.add(item5);
-        menu.add(item6);
-        menu.add(item7);
-
-        saveMenu(menu, "C:\\Users\\admin\\Desktop\\JAVAProject-103\\JavaRMS-Project\\src\\main\\java\\org\\example\\Menu.txt");
-=======
->>>>>>> e2e8db43902a61d77fedaee8397bb95d1bb0eba4
     }
 }

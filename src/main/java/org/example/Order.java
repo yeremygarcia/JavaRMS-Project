@@ -1,5 +1,7 @@
 package org.example;
 
+import org.example.model.MenuItem;
+
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -101,15 +103,15 @@ public class Order {
         String orderInfo = "\n";
         quantityOrdered.clear();
         for(MenuItem item: itemsOrdered){
-            if(!quantityOrdered.containsKey(item.getName())){
-                quantityOrdered.put(item.getName(),1);
+            if(!quantityOrdered.containsKey(item.getItemName())){
+                quantityOrdered.put(item.getItemName(),1);
             } else {
-                quantityOrdered.put(item.getName(), quantityOrdered.get(item.getName()) + 1);
+                quantityOrdered.put(item.getItemName(), quantityOrdered.get(item.getItemName()) + 1);
             }
         }
         for(MenuItem item: itemsOrdered){
-            if(!orderInfo.contains(item.getName())){
-                orderInfo += item.getName() + "->" + quantityOrdered.get(item.getName()) + "\n";
+            if(!orderInfo.contains(item.getItemName())){
+                orderInfo += item.getItemName() + "->" + quantityOrdered.get(item.getItemName()) + "\n";
             }
         }
         return orderInfo;

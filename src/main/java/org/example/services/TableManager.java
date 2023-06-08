@@ -1,4 +1,8 @@
-package org.example;
+package org.example.services;
+
+import org.example.Customer;
+import org.example.TableStatus;
+import org.example.model.Table;
 
 import java.util.HashMap;
 import java.util.Map;
