@@ -17,7 +17,6 @@ public class Table {
     public Table() {
 
     }
-    // Getters and setters
 
     public int getTableId() {
         return tableId;
