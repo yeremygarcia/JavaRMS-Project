@@ -14,6 +14,8 @@ public class Main {
         OrderService orderService = new OrderService();
 //        SalesService salesService = new SalesService();
 
+//        menuService.loadMenuItemsFromFile();
+
         while (true) {
             // Show the main menu and get the user's choice
             int choice = menuService.showMainMenuAndGetChoice();
@@ -51,8 +53,9 @@ public class Main {
                 // case 9: Log out the current user
                 // Here, you would call a method from the UserService to handle user logout
 
-                // case 0: Exit the application
-                // Here, you would exit the while loop and therefore end the application
+                case 0:
+                    return;
+
 
                 default:
                     // Handle an invalid choice

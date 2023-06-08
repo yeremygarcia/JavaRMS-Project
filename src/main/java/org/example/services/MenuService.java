@@ -1,6 +1,7 @@
 package org.example.services;
 
 import org.example.model.MenuItem;
+import org.example.model.User;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -12,10 +13,15 @@ public class MenuService {
     private Scanner scanner;
     private List<MenuItem> menuItems;
     private static final String MENU_FILE_PATH = "menu.txt";
+    private User loggedInUser;
 
     public MenuService() {
         this.scanner = new Scanner(System.in);
-        this.menuItems = loadMenuItemsFromFile();
+        this.menuItems = new ArrayList<>();
+    }
+
+    public List<MenuItem> getMenuItems() {
+        return menuItems;
     }
 
     public void showMainMenu() {
@@ -35,11 +41,11 @@ public class MenuService {
         int choice = 0;
         try {
             choice = Integer.parseInt(scanner.nextLine());
-            if (choice < 1 || choice > 9) {
+            if (choice < 0 || choice > 9) {
                 throw new NumberFormatException();
             }
         } catch (NumberFormatException e) {
-            System.out.println("Invalid input. Please enter a number from 1 to 9.");
+            System.out.println("Invalid input. Please enter a number from 0 to 9.");
         }
         return choice;
     }
@@ -78,7 +84,6 @@ public class MenuService {
                     break;
 
                 case 5:
-                    saveMenuItemsToFile();
                     return;
 
                 default:
@@ -93,7 +98,7 @@ public class MenuService {
         System.out.println("2. Remove Menu Item");
         System.out.println("3. Edit Menu Item");
         System.out.println("4. Display Menu");
-        System.out.println("5. Save and Exit");
+        System.out.println("5. Exit");
     }
 
     private int getMenuManagementChoice() {
@@ -133,6 +138,7 @@ public class MenuService {
 
         MenuItem newItem = new MenuItem(name, description, price, prepTime, ingredients);
         menuItems.add(newItem);
+        saveMenuItemsToFile();
         System.out.println("New menu item added successfully.");
     }
 
@@ -144,6 +150,7 @@ public class MenuService {
         if (index >= 0 && index < menuItems.size()) {
             MenuItem removedItem = menuItems.remove(index);
             System.out.println("Menu item removed: " + removedItem);
+            saveMenuItemsToFile();
         } else {
             System.out.println("Invalid menu item index.");
         }
@@ -176,16 +183,18 @@ public class MenuService {
             }
 
             System.out.println("Menu item updated: " + item);
+            saveMenuItemsToFile();
         } else {
             System.out.println("Invalid menu item index.");
         }
     }
 
-    private void saveMenuItemsToFile() {
-        try (PrintWriter writer = new PrintWriter(new FileWriter(MENU_FILE_PATH))) {
+    public void saveMenuItemsToFile() {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(MENU_FILE_PATH))) {
             for (MenuItem item : menuItems) {
-                writer.println(item.getItemName() + "," + item.getItemDescription() + "," + item.getItemPrice()
-                + "," + item.getPreparationTime() + "," + item.getIngredients());
+                writer.write(item.getName() + "," + item.getDescription() + "," + item.getPrice()
+                        + "," + item.getPreparationTime() + "," + item.getIngredients());
+                writer.newLine(); // Add a new line after each item
             }
             System.out.println("Menu items saved to file.");
         } catch (IOException e) {
@@ -193,35 +202,54 @@ public class MenuService {
         }
     }
 
-    private List<MenuItem> loadMenuItemsFromFile() {
-        List<MenuItem> items = new ArrayList<>();
+    public void checkMenuFileExistence() {
+        File file = new File(MENU_FILE_PATH);
+        if (file.exists()) {
+            System.out.println("menu.txt file exists.");
+        } else {
+            System.out.println("menu.txt file does not exist.");
+        }
+    }
 
+    public void loadMenuItemsFromFile() {
+//        System.out.println("loadMenuItemsFromFile() called");
         try (BufferedReader reader = new BufferedReader(new FileReader(MENU_FILE_PATH))) {
             String line;
             while ((line = reader.readLine()) != null) {
-                String[] parts = line.split(",");
-                if (parts.length == 5) {
-                    String name = parts[0];
-                    String description = parts[1];
-                    double price = Double.parseDouble(parts[2]);
-                    int prepTime = Integer.parseInt(parts[3]);
-                    List<String> ingredients = Arrays.asList(parts[4].split(";"));
+                String[] parts = line.split(",", -1);
+                if (parts.length >= 4) {
+                    String name = parts[0].trim();
+                    String description = parts[1].trim();
+                    double price = Double.parseDouble(parts[2].trim());
+                    double prepTime = Double.parseDouble(parts[3].trim());
+
+                    List<String> ingredients = new ArrayList<>();
+                    for (int i = 4; i < parts.length; i++) {
+                        ingredients.add(parts[i].trim());
+                    }
 
                     MenuItem item = new MenuItem(name, description, price, prepTime, ingredients);
-                    items.add(item);
+                    menuItems.add(item);
+
+                    // Print the menu item details for verification
+//                    System.out.println("Loaded menu item: " + item);
+                } else {
+                    System.out.println("Skipped line: " + line);
                 }
             }
-            System.out.println("Menu items loaded from file.");
+//            System.out.println("Menu items loaded from file.");
         } catch (IOException e) {
             System.out.println("Failed to load menu items from file: " + e.getMessage());
         }
-
-        return items;
     }
+
 
     private void displayMenu() {
         System.out.println("\nMENU");
-        for (MenuItem item : menuItems) {
+//        checkMenuFileExistence();
+        loadMenuItemsFromFile();
+//        System.out.println(getMenuItems());
+        for (MenuItem item : getMenuItems()) {
             System.out.println(item.toString());
             System.out.println("--------------------");
         }

@@ -15,16 +15,16 @@ public class MenuItem {
     public MenuItem(String itemName, String itemDescription, double preparationTime, double itemPrice, List<String> ingredients) {
         this.itemName = itemName;
         this.itemDescription = itemDescription;
-        this.preparationTime = preparationTime;
         this.itemPrice = itemPrice;
+        this.preparationTime = preparationTime;
         this.ingredients = ingredients;
     }
 
-    public String getItemName() {
+    public String getName() {
         return itemName;
     }
 
-    public String getItemDescription() {
+    public String getDescription() {
         return itemDescription;
     }
 
@@ -32,7 +32,7 @@ public class MenuItem {
         return preparationTime;
     }
 
-    public double getItemPrice() {
+    public double getPrice() {
         return itemPrice;
     }
 
@@ -62,9 +62,9 @@ public class MenuItem {
 
     @Override
     public String toString() {
-        return "Name: " + getItemName() +
-                "\nDescription: " + getItemDescription() +
-                "\nPrice: $" + getItemPrice() +
+        return "Name: " + getName() +
+                "\nDescription: " + getDescription() +
+                "\nPrice: $" + getPrice() +
                 "\nPrep Time: " + getPreparationTime() + " minutes" +
                 "\nIngredients: " + getIngredients();
     }

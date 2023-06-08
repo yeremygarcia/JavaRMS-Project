@@ -1,5 +1,7 @@
 package org.example;
 
+import org.example.model.MenuItem;
+
 import java.text.SimpleDateFormat;
 import java.util.*;
 
