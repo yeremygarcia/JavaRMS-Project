@@ -18,8 +18,11 @@ public class Table {
     public Table() {
 
     }
+<<<<<<< HEAD
 
     // Getters and setters
+=======
+>>>>>>> e891c6bbc0ec234a65567a66d89bf807955991f7
 
     public int getTableId() {
         return tableId;

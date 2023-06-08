@@ -1,11 +1,13 @@
 package org.example.services;
 
 import org.example.model.MenuItem;
-import org.example.model.User;
+import org.example.Inventory;
+import org.example.Ingredient;
+
+
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -14,11 +16,26 @@ import static org.example.Colors.*;
 public class MenuService {
     private Scanner scanner;
     private List<MenuItem> menuItems;
+<<<<<<< HEAD
     private static final String MENU_FILE_PATH = "C:\\Users\\admin\\Desktop\\JAVAProject\\JavaRMS-Project\\menu.txt";
+=======
+    private static final String MENU_FILE_PATH = "C:\\Users\\klee9\\CTAC\\Day66ProjectDemo\\DemoProject\\menu.txt";
+    private Inventory inventory; // Declare the inventory variable
+>>>>>>> e891c6bbc0ec234a65567a66d89bf807955991f7
 
     public MenuService() {
         this.scanner = new Scanner(System.in);
         this.menuItems = new ArrayList<>();
+        this.inventory = new Inventory();
+
+        inventory.getIngredients().add(new Ingredient("potatoes", 200, 100));
+        inventory.getIngredients().add(new Ingredient("oil", 20, 15));
+        inventory.getIngredients().add(new Ingredient("salt", 40, 25));
+        inventory.getIngredients().add(new Ingredient("beef patty", 100, 75));
+        inventory.getIngredients().add(new Ingredient("bun", 100, 65));
+        inventory.getIngredients().add(new Ingredient("vanilla ice cream", 80, 60));
+        inventory.getIngredients().add(new Ingredient("milk", 90, 70));
+        System.out.println();
     }
     public List<MenuItem> getMenuItems() {
         return menuItems;
@@ -255,4 +272,72 @@ public class MenuService {
         }
         return null;
     }
+<<<<<<< HEAD
 }
+=======
+    public void manageInventory() {
+        // Display the inventory management menu
+        showInventoryManagementMenu();
+
+        // Get the user's choice
+        int choice = getInventoryManagementChoice();
+
+        switch (choice) {
+            case 1:
+                displayInventory();
+                break;
+
+            case 2:
+                updateIngredientQuantity();
+                break;
+
+            case 3:
+                return;
+
+            default:
+                System.out.println("Invalid choice. Please select a valid option.");
+                break;
+        }
+    }
+    private void showInventoryManagementMenu() {
+        System.out.println("1. Display Inventory");
+        System.out.println("2. Update Ingredient Quantity");
+        System.out.println("3. Exit");
+    }
+
+    private int getInventoryManagementChoice() {
+        int choice = 0;
+        try {
+            choice = Integer.parseInt(scanner.nextLine());
+            if (choice < 1 || choice > 3) {
+                throw new NumberFormatException();
+            }
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid input. Please enter a number from 1 to 3.");
+        }
+        return choice;
+    }
+
+    private void displayInventory() {
+        System.out.println("\nINVENTORY---------------");
+
+        for (Ingredient ingredient : inventory.getIngredients()) {
+            System.out.println(ingredient.toString());
+        }
+    }
+
+
+    private void updateIngredientQuantity() {
+        // Implement the logic to update the quantity of an ingredient
+        // Example implementation:
+        System.out.print("Enter the name of the ingredient: ");
+        String ingredientName = scanner.nextLine();
+
+        System.out.print("Enter the used quantity: ");
+        int usedQuantity = Integer.parseInt(scanner.nextLine());
+
+        inventory.updateIngredientQuantity(ingredientName, usedQuantity);
+    }
+
+}
+>>>>>>> e891c6bbc0ec234a65567a66d89bf807955991f7

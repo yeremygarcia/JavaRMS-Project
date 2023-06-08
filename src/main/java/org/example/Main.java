@@ -15,7 +15,10 @@ import static org.example.Colors.*;
 public class Main {
 
     public static void main(String[] args) {
+<<<<<<< HEAD
 
+=======
+>>>>>>> e891c6bbc0ec234a65567a66d89bf807955991f7
         Scanner scanner = new Scanner(System.in);
 
         // Declare service classes for different components of the application
@@ -64,16 +67,22 @@ public class Main {
                     break;
 
                 case 5:
+<<<<<<< HEAD
                     if (currentUser != null && currentUser.getRole() == Role.STAFF) {
                         // Get the customer's name
                         System.out.print(ANSI_CYAN + "Enter customer name: " + ANSI_RESET);
+=======
+                    if (currentUser != null && (currentUser.getRole() == Role.STAFF || currentUser.getRole() == Role.MANAGER)) {
+                        // ASK FOR CUSTOMER NAME
+                        System.out.print("Enter customer name: ");
+>>>>>>> e891c6bbc0ec234a65567a66d89bf807955991f7
                         String customerName = scanner.nextLine();
                         Customer customer = new Customer(customerName);
 
-                        // Display the menu
+                        // DISPLAY MENU
                         menuService.displayMenu();
 
-                        // Order food
+                        // ORDERING
                         Order order = new Order(orderService.getTotalOrders() + 1);
                         while (true) {
                             System.out.println(ANSI_PURPLE + "Enter item name to add to order (0 to finish ordering):" + ANSI_RESET);
@@ -82,26 +91,26 @@ public class Main {
                                 break;
                             }
 
-                            // Check if the item exists in the menu
                             MenuItem item = menuService.getMenuItemByName(itemName);
                             if (item == null) {
                                 System.out.println(ANSI_RED + "Invalid item name." + ANSI_RESET);
                                 continue;
                             }
 
+<<<<<<< HEAD
                             // Get the quantity
                             System.out.print(ANSI_YELLOW + "Enter quantity: " + ANSI_RESET);
+=======
+                            System.out.print("Enter quantity: ");
+>>>>>>> e891c6bbc0ec234a65567a66d89bf807955991f7
                             int quantity = Integer.parseInt(scanner.nextLine());
 
-                            // Add the item to the order
                             order.addItem(item, quantity);
                             System.out.println(ANSI_CYAN + "Added " + quantity + "x " + item.getName() + " to the order." + ANSI_RESET);
                         }
 
-                        // Add the order to the order service
                         orderService.addOrder(order);
 
-                        // Process the order
                         orderService.processOrder(order.getOrderID());
                     } else {
                         System.out.println(ANSI_RED + "You don't have permission to perform this action." + ANSI_RESET);
@@ -131,8 +140,13 @@ public class Main {
 
                     break;
 
-                // case 7: Manage the inventory
-                // Here, you would call appropriate methods from the InventoryService to manage the inventory
+                case 7:
+                    if (currentUser != null && currentUser.getRole() == Role.MANAGER) {
+                        menuService.manageInventory();
+                    } else {
+                        System.out.println("You don't have permission to perform this action.");
+                    }
+                    break;
 
                 // case 8: Generate a sales report
                 // Here, you would call a method from the SalesService to generate a sales report

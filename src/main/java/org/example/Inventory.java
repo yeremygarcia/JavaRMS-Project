@@ -1,7 +1,10 @@
 package org.example;
 
+import org.example.Ingredient;
+
 import java.util.ArrayList;
 import java.util.List;
+
 
 public class Inventory {
     private List<Ingredient> ingredients;
@@ -26,5 +29,28 @@ public class Inventory {
             }
         }
     }
+    public void checkLowIngredients() {
+        for (Ingredient ingredient : ingredients) {
+            if (ingredient.isRunningLow()) {
+                System.out.println("Alert: " + ingredient.getName() + " is running low!");
+            }
+        }
+    }
+    public void updateIngredientUsage(String ingredientName, int usedQuantity) {
+        for (Ingredient ingredient : ingredients) {
+            if (ingredient.getName().equals(ingredientName)) {
+                int currentQuantity = ingredient.getQuantity();
+                ingredient.setQuantity(currentQuantity - usedQuantity);
+                checkLowIngredients();
+                break;
+            }
+        }
+    }
+    public List<Ingredient> getIngredients() {
+        return ingredients;
+    }
+
+
+
 }
 
