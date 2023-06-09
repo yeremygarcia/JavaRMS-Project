@@ -41,10 +41,8 @@ public class OrderService {
     }
 
     public Order getOrder(int orderID) {
-        System.out.println("Searching for order with ID: " + orderID);
         Order order = activeOrders.get(orderID);
         if (order != null) {
-            System.out.println("Order found with ID: " + orderID);
             return order;
         } else {
             System.out.println("Order not found with ID: " + orderID);
@@ -80,6 +78,7 @@ public class OrderService {
             // Process the order
             order.updateOrderStatus(OrderStatus.PREPARING);
             System.out.println("Order " + orderID + " has been processed and is ready for payment.");
+            System.out.println();
 
             // Update ingredient usage
             for (Map.Entry<MenuItem, Integer> entry : order.getItemsOrdered().entrySet()) {
@@ -96,6 +95,7 @@ public class OrderService {
             // Calculate the total price
             double totalPrice = order.getTotalPrice();
 
+            System.out.println();
             System.out.println("Total price: $" + totalPrice);
 
             // Prompt for payment
@@ -119,8 +119,10 @@ public class OrderService {
                 // Payment successful
                 double change = amount - totalPrice;
                 System.out.println("Payment processed successfully. Change: $" + change);
+                System.out.println();
             } else {
                 System.out.println("Insufficient payment amount. Please provide the correct amount.");
+                System.out.println();
             }
         } else {
             System.out.println("Invalid order ID or the order is not yet completed.");

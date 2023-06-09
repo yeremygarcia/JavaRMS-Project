@@ -52,6 +52,7 @@ public class OrderServiceMenu {
         // Order food
         Order order = new Order(orderService.getTotalOrders() + 1, tableId);
         while (true) {
+            System.out.println();
             System.out.println("Enter item name to add to order (0 to finish ordering):");
             String itemName = scanner.nextLine();
             if (itemName.equals("0")) {
@@ -65,6 +66,7 @@ public class OrderServiceMenu {
                 continue;
             }
 
+            System.out.println();
             // Get the quantity
             System.out.print("Enter quantity: ");
             int quantity = Integer.parseInt(scanner.nextLine());
@@ -95,6 +97,7 @@ public class OrderServiceMenu {
     }
 
     public void updateOrders() {
+        System.out.println();
         System.out.println("Enter order ID: ");
         int orderId = Integer.parseInt(scanner.nextLine());
 
@@ -121,6 +124,7 @@ public class OrderServiceMenu {
 
 
     public void displayAllOrders() {
+        System.out.println();
         System.out.println("All Orders:");
         for (Order order : orderService.getAllOrders()) {
             System.out.println("Order ID: " + order.getOrderID() + ", Status: " + order.getOrderStatus());
@@ -128,6 +132,7 @@ public class OrderServiceMenu {
     }
 
     public void displaySpecificOrders() {
+        System.out.println();
         System.out.println("Enter Order ID: ");
         int orderId = Integer.parseInt(scanner.nextLine());
 
@@ -154,6 +159,7 @@ public class OrderServiceMenu {
     public void showMenu() {
         int choice = 0;
         do {
+            System.out.println();
             System.out.println("Order Service Menu:");
             System.out.println("1. Process Order");
             System.out.println("2. Update Orders");
@@ -161,6 +167,7 @@ public class OrderServiceMenu {
             System.out.println("4. Display All Orders");
             System.out.println("0. Exit");
 
+            System.out.println();
             System.out.println("Enter your choice: ");
             choice = Integer.parseInt(scanner.nextLine());
 

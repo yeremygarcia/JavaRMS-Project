@@ -30,6 +30,7 @@ public class GenerateReport {
             PrintStream combinedStream = new PrintStream(new CombinedOutputStream(originalStream, fileStream));
             System.setOut(combinedStream);
 
+            System.out.println();
             System.out.println("-----------------------------");
             System.out.println("Daily Sales Report");
             System.out.println("Date: " + currentDate);
@@ -78,6 +79,7 @@ public class GenerateReport {
             System.out.println("-----------------------------");
 
             System.out.println("Sales report exported to " + filename);
+            System.out.println();
 
             // Restore the standard output
             System.setOut(originalStream);

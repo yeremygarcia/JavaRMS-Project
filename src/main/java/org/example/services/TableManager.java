@@ -36,6 +36,7 @@ public class TableManager {
         Table table = getTableByID(tableNumber);
         if (table != null) {
             table.setOrder(null);
+            table.setStatus(TableStatus.AVAILABLE);
             System.out.println("Order unassigned from table " + tableNumber);
         } else {
             System.out.println("Table " + tableNumber + " not found");

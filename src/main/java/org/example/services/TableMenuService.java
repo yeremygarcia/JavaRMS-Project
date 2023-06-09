@@ -14,10 +14,12 @@ public class TableMenuService {
     }
 
     public void displayTableStatuses() {
+        System.out.println();
         tableManager.displayTableStatus();
     }
 
     public void assignTable() {
+        System.out.println();
         System.out.println("Enter table ID: ");
         int tableId = Integer.parseInt(scanner.nextLine());
 
@@ -28,6 +30,7 @@ public class TableMenuService {
     }
 
     public void unassignTable() {
+        System.out.println();
         System.out.println("Enter table ID: ");
         int tableId = Integer.parseInt(scanner.nextLine());
 
@@ -37,12 +40,14 @@ public class TableMenuService {
     public void showMenu() {
         int choice = 0;
         do {
+            System.out.println();
             System.out.println("Table Menu:");
             System.out.println("1. Display Table Statuses");
             System.out.println("2. Assign Table");
             System.out.println("3. Unassign Table");
             System.out.println("0. Exit");
 
+            System.out.println();
             System.out.println("Enter your choice: ");
             choice = Integer.parseInt(scanner.nextLine());
 

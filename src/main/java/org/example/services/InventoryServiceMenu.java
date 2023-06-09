@@ -15,6 +15,7 @@ public class InventoryServiceMenu {
     }
 
     public void showMenu() {
+        System.out.println();
         System.out.println("==== Inventory Service Menu ====");
         System.out.println("1. Display all ingredients in inventory");
         System.out.println("2. Add more quantities of an ingredient");
@@ -33,6 +34,7 @@ public class InventoryServiceMenu {
     }
 
     private int getUserChoice() {
+        System.out.println();
         System.out.print("Enter your choice: ");
         String choiceString = scanner.nextLine();
 
@@ -48,6 +50,7 @@ public class InventoryServiceMenu {
 
 
     private void showIngredients() {
+        System.out.println();
         System.out.println("==== Ingredients in Inventory ====");
         for (Ingredient ingredient : inventory.getIngredients()) {
             System.out.println(ingredient);
@@ -57,6 +60,7 @@ public class InventoryServiceMenu {
     }
 
     private void addIngredientQuantity() {
+        System.out.println();
         System.out.print("Enter the name of the ingredient to add quantity: ");
         String ingredientName = scanner.nextLine();
 

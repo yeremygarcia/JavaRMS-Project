@@ -1,20 +1,14 @@
+
 -----------------------------
 Daily Sales Report
 Date: 2023-06-09
 -----------------------------
-Total Revenue: $14.0
+Total Revenue: $0.0
 
 Most Popular Items:
-- tacos: 2
 
 Table Sales:
-- Table ID: 2, Total Cost: $14.0
-
-Order ID: 1
-Table ID: 2
-Items Ordered:
-- tacos (Quantity: 2, Cost: $14.0)
-Total Price: $14.0
 
 -----------------------------
 Sales report exported to salesreport.txt
+

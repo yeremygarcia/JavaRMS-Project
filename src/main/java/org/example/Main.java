@@ -8,6 +8,7 @@ import org.example.utilities.Role;
 import java.util.Scanner;
 
 import static org.example.utilities.Colors.ANSI_RED;
+import static org.example.utilities.Colors.ANSI_RESET;
 
 
 public class Main {
@@ -62,49 +63,56 @@ public class Main {
                     if (currentUser != null && currentUser.getRole() == Role.MANAGER) {
                         userService.registerUser(Role.MANAGER);
                     } else {
-                        System.out.println(ANSI_RED + "You don't have permission to perform this action.");
+                        System.out.println(ANSI_RED + "You don't have permission to perform this action." + ANSI_RESET);
+                        System.out.println();
                     }
                 }
                 case 3 -> {
                     if (currentUser != null && currentUser.getRole() == Role.MANAGER) {
                         userService.registerUser(Role.STAFF);
                     } else {
-                        System.out.println(ANSI_RED + "You don't have permission to perform this action.");
+                        System.out.println(ANSI_RED + "You don't have permission to perform this action." + ANSI_RESET);
+                        System.out.println();
                     }
                 }
                 case 4 -> {
                     if (currentUser != null && currentUser.getRole() == Role.MANAGER) {
                         menuService.manageMenu();
                     } else {
-                        System.out.println(ANSI_RED + "You don't have permission to perform this action.");;
+                        System.out.println(ANSI_RED + "You don't have permission to perform this action." + ANSI_RESET);
+                        System.out.println();
                     }
                 }
                 case 5 -> {
                     if (currentUser != null && (currentUser.getRole() == Role.STAFF || currentUser.getRole() == Role.MANAGER)) {
                         orderServiceMenu.showMenu();
                     } else {
-                        System.out.println(ANSI_RED + "You don't have permission to perform this action.");
+                        System.out.println(ANSI_RED + "You don't have permission to perform this action." + ANSI_RESET);
+                        System.out.println();
                     }
                 }
                 case 6 -> {
                     if (currentUser != null && (currentUser.getRole() == Role.STAFF || currentUser.getRole() == Role.MANAGER)) {
                         tableMenuService.showMenu();
                     } else {
-                        System.out.println(ANSI_RED + "You don't have permission to perform this action.");
+                        System.out.println(ANSI_RED + "You don't have permission to perform this action." + ANSI_RESET);
+                        System.out.println();
                     }
                 }
                 case 7 -> {
                     if (currentUser != null && (currentUser.getRole() == Role.STAFF || currentUser.getRole() == Role.MANAGER)) {
                         inventoryServiceMenu.showMenu();
                     } else {
-                        System.out.println(ANSI_RED + "You don't have permission to perform this action.");
+                        System.out.println(ANSI_RED + "You don't have permission to perform this action." + ANSI_RESET);
+                        System.out.println();
                     }
                 }
                 case 8 -> {
                     if (currentUser != null && currentUser.getRole() == Role.MANAGER) {
                         generateReport.dailyReport();
                     } else {
-                        System.out.println(ANSI_RED + "You don't have permission to perform this action.");
+                        System.out.println(ANSI_RED + "You don't have permission to perform this action." + ANSI_RESET);
+                        System.out.println();
                     }
                 }
                 case 9 -> userService.logoutUser();
@@ -112,7 +120,7 @@ public class Main {
                 default ->
                     // Handle an invalid choice
                     // Here, you could show an error message and loop back to show the menu again
-                        System.out.println(ANSI_RED + "Invalid choice. Please try again.");
+                        System.out.println(ANSI_RED + "Invalid choice. Please try again." + ANSI_RESET);
             }
         }
     }
