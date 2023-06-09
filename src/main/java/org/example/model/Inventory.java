@@ -45,9 +45,10 @@ public class Inventory {
     }
 
     public Ingredient getIngredientByName(String ingredientName) {
+        String trimmedName = ingredientName.replace("[", "").replace("]", "");
         for (Ingredient ingredient : ingredients) {
-            if (ingredient.getName().equalsIgnoreCase(ingredientName)) {
-                System.out.println(ingredient);
+            if (ingredient.getName().equalsIgnoreCase(trimmedName)) {
+//                System.out.println(trimmedName);
                 return ingredient;
             }
         }

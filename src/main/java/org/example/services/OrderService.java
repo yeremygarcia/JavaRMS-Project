@@ -41,8 +41,17 @@ public class OrderService {
     }
 
     public Order getOrder(int orderID) {
-        return activeOrders.get(orderID);
+        System.out.println("Searching for order with ID: " + orderID);
+        Order order = activeOrders.get(orderID);
+        if (order != null) {
+            System.out.println("Order found with ID: " + orderID);
+            return order;
+        } else {
+            System.out.println("Order not found with ID: " + orderID);
+            return null;
+        }
     }
+
 
     public List<Order> getAllOrders() {
         return orderList;
@@ -64,6 +73,7 @@ public class OrderService {
 
     public void processOrder(int orderID) {
         TableManager tableManager = new TableManager();
+        System.out.println("Order ID: " + orderID);
         Order order = getOrder(orderID);
         Table table = tableManager.getTableByID(order.getOrderTableID());
         if (order != null && order.getOrderStatus() == OrderStatus.WAITING) {

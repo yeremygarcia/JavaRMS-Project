@@ -5,8 +5,8 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.example.Colors.ANSI_BLUE;
-import static org.example.Colors.ANSI_RESET;
+import static org.example.utilities.Colors.ANSI_BLUE;
+import static org.example.utilities.Colors.ANSI_RESET;
 
 public class MenuItem {
     private String itemName;

@@ -1,4 +1,4 @@
-package org.example;
+package org.example.utilities;
 
 public class Colors {
     public static final String ANSI_RESET = "\u001B[0m";
@@ -8,5 +8,7 @@ public class Colors {
     public static final String ANSI_PURPLE = "\u001B[35m";
     public static final String ANSI_CYAN = "\u001B[36m";
     public static final String ANSI_MAGENTA = "\033[0;35m";
+
+    public static final String ANSI_GREEN = "\u001B[32m";
 
 }

@@ -3,12 +3,12 @@ package org.example.services;
 import org.example.model.User;
 import org.example.UserRepository;
 import org.mindrot.jbcrypt.BCrypt;
-import static org.example.Colors.*;
+import static org.example.utilities.Colors.*;
 
 import java.util.Scanner;
 
-import static org.example.Colors.ANSI_BLUE;
-import static org.example.Colors.ANSI_RESET;
+import static org.example.utilities.Colors.ANSI_BLUE;
+import static org.example.utilities.Colors.ANSI_RESET;
 
 public class LoginService {
     private UserRepository userRepository;

@@ -8,7 +8,7 @@ import org.example.utilities.Role;
 import org.example.model.User;
 import org.mindrot.jbcrypt.BCrypt;
 
-import static org.example.Colors.*;
+import static org.example.utilities.Colors.*;
 
 public class UserService {
     private Map<String, User> users;

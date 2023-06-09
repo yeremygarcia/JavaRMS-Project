@@ -60,13 +60,16 @@ public class OrderServiceMenu {
         // Check for low ingredients
         inventory.checkLowIngredients();
 
+        // Add the order to the order service
+        orderService.addOrder(order);
+
         // Proceed with processing the order only if all ingredients are available
         if (inventory.areAllIngredientsAvailable(order.getItemsOrdered())) {
             // Process the order
             orderService.processOrder(order.getOrderID());
-            // Add the order to the order service
-            orderService.addOrder(order);
+
         } else {
+            orderService.removeOrder(order.getOrderID());
             System.out.println("Unable to process order. Some ingredients are not available.");
         }
     }
