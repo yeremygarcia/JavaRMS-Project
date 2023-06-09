@@ -15,17 +15,37 @@ public class OrderServiceMenu {
     private Scanner scanner;
     private Inventory inventory;
 
-    public OrderServiceMenu(OrderService orderService, MenuService menuService, Inventory inventory) {
+    private TableManager tableManager;
+
+    public OrderServiceMenu(OrderService orderService, MenuService menuService, Inventory inventory, TableManager tableManager) {
         this.orderService = orderService;
         this.menuService = menuService;
         this.scanner = new Scanner(System.in);
         this.inventory = inventory;
+        this.tableManager = tableManager;
     }
 
     public void processOrder() {
         System.out.println("Enter table ID: ");
-        int tableId = Integer.parseInt(scanner.nextLine());
+        String tableIdInput = scanner.nextLine();
+        int tableId;
 
+        try {
+            // Attempt to parse the input string to an integer
+            tableId = Integer.parseInt(tableIdInput);
+        } catch (NumberFormatException e) {
+            // Handle the exception
+            System.out.println("Invalid table ID entered. Please enter a valid number.");
+            // You can choose to return or continue the program flow here
+            return; // or use "continue;" if this is inside a loop
+        }
+
+        // Check if the tableId exists in the TableManager
+        if (!tableManager.tableExists(tableId)) {
+            System.out.println("Table does not exist. Please enter a valid table ID.");
+            // You can choose to return or continue the program flow here
+            return; // or use "continue;" if this is inside a loop
+        }
         // Display the menu
         menuService.displayMenu();
 

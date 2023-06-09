@@ -61,8 +61,15 @@ public class Inventory {
             int quantity = entry.getValue();
             List<String> ingredients = item.getIngredients();
 
+            List<String> cleanedIngredients = new ArrayList<>();
             for (String ingredient : ingredients) {
+                String cleanedIngredient = ingredient.replaceAll("\\[|\\]", "");
+                cleanedIngredients.add(cleanedIngredient);
+            }
+
+            for (String ingredient : cleanedIngredients) {
                 if (!isIngredientAvailable(ingredient, quantity)) {
+                    System.out.println(ingredient);
                     return false;
                 }
             }
@@ -70,8 +77,19 @@ public class Inventory {
         return true;
     }
 
+
     private boolean isIngredientAvailable(String ingredientName, int quantity) {
-        Ingredient ingredient = getIngredientByName(ingredientName);
+        String trimmedName = ingredientName.replace("[", "").replace("]", "");
+        Ingredient ingredient = getIngredientByName(trimmedName);
         return ingredient != null && ingredient.getQuantity() >= quantity;
+    }
+
+    public boolean doesIngredientExist(String ingredientName) {
+        for (Ingredient ingredient : ingredients) {
+            if (ingredient.getName().equalsIgnoreCase(ingredientName)) {
+                return true;
+            }
+        }
+        return false;
     }
 }

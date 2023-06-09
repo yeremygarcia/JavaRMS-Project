@@ -17,13 +17,13 @@ public class Main {
 
         // Declare service classes for different components of the application
         UserService userService = new UserService();
-        MenuService menuService = new MenuService();
         Inventory inventory = new Inventory();
         // Create ingredient objects
         Ingredient potatoes = new Ingredient("potatoes", 200, 100);
         Ingredient oil = new Ingredient("oil", 20, 15);
         Ingredient salt = new Ingredient("salt", 40, 25);
         Ingredient beefPatty = new Ingredient("beef patty", 100, 75);
+        Ingredient chickenPatty = new Ingredient("chicken patty", 100, 75);
         Ingredient bun = new Ingredient("bun", 100, 65);
         Ingredient vanillaIceCream = new Ingredient("vanilla ice cream", 80, 60);
         Ingredient milk = new Ingredient("milk", 90, 70);
@@ -37,10 +37,11 @@ public class Main {
         inventory.addIngredient(vanillaIceCream);
         inventory.addIngredient(milk);
 
+        MenuService menuService = new MenuService(inventory);
         OrderService orderService = new OrderService(inventory);
         TableManager tableManager = new TableManager();
         TableMenuService tableMenuService = new TableMenuService(tableManager, orderService);
-        OrderServiceMenu orderServiceMenu = new OrderServiceMenu(orderService, menuService, inventory);
+        OrderServiceMenu orderServiceMenu = new OrderServiceMenu(orderService, menuService, inventory, tableManager);
         GenerateReport generateReport = new GenerateReport(orderService);
 
 

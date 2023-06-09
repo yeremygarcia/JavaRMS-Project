@@ -56,5 +56,9 @@ public class TableManager {
     public Table getTableByID(int tableID) {
         return tables.get(tableID);
     }
+
+    public boolean tableExists(int tableId) {
+        return getTableByID(tableId) != null;
+    }
 }
 

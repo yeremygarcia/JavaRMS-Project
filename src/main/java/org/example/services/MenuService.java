@@ -1,5 +1,7 @@
 package org.example.services;
 
+import org.example.model.Ingredient;
+import org.example.model.Inventory;
 import org.example.model.MenuItem;
 import org.example.model.User;
 
@@ -11,9 +13,12 @@ public class MenuService {
     private List<MenuItem> menuItems;
     private static final String MENU_FILE_PATH = "menu.txt";
 
-    public MenuService() {
+    private Inventory inventory;
+
+    public MenuService(Inventory inventory) {
         this.scanner = new Scanner(System.in);
         this.menuItems = new ArrayList<>();
+        this.inventory = inventory;
     }
 
     public List<MenuItem> getMenuItems() {
@@ -118,9 +123,19 @@ public class MenuService {
             ingredients.add(ingredient);
         }
 
+        for (String ingredient : ingredients) {
+            if (!inventory.doesIngredientExist(ingredient)) { // Check if ingredient already exists
+                Ingredient newIngredient = new Ingredient(ingredient, 100, 60);
+                inventory.addIngredient(newIngredient);
+            } else {
+                System.out.println("Ingredient '" + ingredient + "' already exists in the inventory.");
+            }
+        }
+
         MenuItem newItem = new MenuItem(name, description, price, prepTime, ingredients);
         menuItems.add(newItem);
         saveMenuItemsToFile();
+        loadMenuItemsFromFile();
         System.out.println("New menu item added successfully.");
     }
 
