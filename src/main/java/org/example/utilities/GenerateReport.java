@@ -34,7 +34,7 @@ public class GenerateReport {
             System.out.println("Daily Sales Report");
             System.out.println("Date: " + currentDate);
             System.out.println("-----------------------------");
-            System.out.println("Total Revenue: " + orderService.getTotalRevenue());
+            System.out.println("Total Revenue: $" + orderService.getTotalRevenue());
             System.out.println();
             // Calculate item quantities using streams
             Map<String, Integer> itemQuantityMap = orderService.getAllOrders().stream()
@@ -71,7 +71,7 @@ public class GenerateReport {
                     double cost = item.getPrice() * quantity;
                     System.out.println("- " + item.getName() + " (Quantity: " + quantity + ", Cost: $" + cost + ")");
                 });
-                System.out.println("Total Price: " + order.getTotalPrice());
+                System.out.println("Total Price: $" + order.getTotalPrice());
                 System.out.println();
             });
 
