@@ -36,6 +36,7 @@ public class Main {
         inventory.addIngredient(bun);
         inventory.addIngredient(vanillaIceCream);
         inventory.addIngredient(milk);
+        inventory.addIngredient(chickenPatty);
 
         MenuService menuService = new MenuService(inventory);
         OrderService orderService = new OrderService(inventory);
