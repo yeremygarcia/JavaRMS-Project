@@ -2,10 +2,10 @@ package org.example.services;
 
 import org.example.model.Customer;
 import org.example.TableStatus;
+import org.example.model.Order;
 import org.example.model.Table;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class TableManager {
     private Map<Integer, Table> tables;
@@ -18,14 +18,28 @@ public class TableManager {
         tables.put(3, new Table(3, 6));
     }
 
-    public void assignCustomerToTable(int tableId, Customer customer) {
+    public Map<Integer, Table> getTables() {
+        return tables;
+    }
+
+    public void assignOrderToTable(int tableId, Order order) {
         Table table = tables.get(tableId);
         if (table != null && table.getStatus() == TableStatus.AVAILABLE) {
             table.setStatus(TableStatus.OCCUPIED);
-            table.setAssignedCustomer(customer);
-            System.out.println("Assigned customer " + customer.getName() + " to table " + tableId);
+            table.setOrder(order);
+            System.out.println("Assigned order number " + order.getOrderID() + " to table " + tableId);
         } else {
             System.out.println("Table " + tableId + " is not available for assignment.");
+        }
+    }
+
+    public void unassignOrderFromTable(int tableNumber) {
+        Table table = getTableByID(tableNumber);
+        if (table != null) {
+            table.setOrder(null);
+            System.out.println("Order unassigned from table " + tableNumber);
+        } else {
+            System.out.println("Table " + tableNumber + " not found");
         }
     }
 
@@ -34,9 +48,9 @@ public class TableManager {
             int tableId = entry.getKey();
             Table table = entry.getValue();
             TableStatus status = table.getStatus();
-            String customerName = (table.getAssignedCustomer() != null) ? table.getAssignedCustomer().getName() : "None";
+            String orderId = (table.getOrder() != null) ? Integer.toString(table.getOrder().getOrderID()) : "None";
 
-            System.out.println("Table " + tableId + ", Status: " + status + ", Assigned Customer: " + customerName);
+            System.out.println("Table " + tableId + ", Status: " + status + ", Assigned OrderId: " + orderId);
         }
     }
 

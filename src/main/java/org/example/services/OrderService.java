@@ -2,6 +2,7 @@ package org.example.services;
 
 import org.example.OrderStatus;
 import org.example.model.Order;
+import org.example.model.Table;
 
 import java.util.*;
 
@@ -53,14 +54,17 @@ public class OrderService {
     }
 
     public void processOrder(int orderID) {
+        TableManager tableManager = new TableManager();
         Order order = getOrder(orderID);
+        Table table = tableManager.getTableByID(order.getOrderTableID());
         if (order != null && order.getOrderStatus() == OrderStatus.WAITING) {
             // Process the order
-            order.updateOrderStatus(OrderStatus.READY);
+            order.updateOrderStatus(OrderStatus.PREPARING);
             System.out.println("Order " + orderID + " has been processed and is ready for payment.");
 
             // Calculate the total price
             double totalPrice = order.getTotalPrice();
+
             System.out.println("Total price: $" + totalPrice);
 
             // Prompt for payment
@@ -78,13 +82,12 @@ public class OrderService {
 
     public void processPayment(int orderID, double amount) {
         Order order = getOrder(orderID);
-        if (order != null && order.getOrderStatus() == OrderStatus.READY) {
+        if (order != null) {
             double totalPrice = order.getTotalPrice();
             if (amount >= totalPrice) {
                 // Payment successful
                 double change = amount - totalPrice;
                 System.out.println("Payment processed successfully. Change: $" + change);
-                order.updateOrderStatus(OrderStatus.PAID);
             } else {
                 System.out.println("Insufficient payment amount. Please provide the correct amount.");
             }
@@ -92,4 +95,15 @@ public class OrderService {
             System.out.println("Invalid order ID or the order is not yet completed.");
         }
     }
+
+    public double getTotalRevenue() {
+        double totalRevenue = 0.0;
+
+        for (Order order : orderList) {
+            totalRevenue += order.getTotalPrice();
+        }
+
+        return totalRevenue;
+    }
+
 }

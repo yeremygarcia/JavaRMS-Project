@@ -8,16 +8,16 @@ import java.util.*;
 
 public class Order {
     private int orderID;
-//    private int orderTableID;
+    private int orderTableId;
     private double totalPrice;
     private OrderStatus orderStatus;
     private Map<MenuItem, Integer> itemsOrdered;
     private Date lastHandled;
 
 
-    public Order(int orderID) {
+    public Order(int orderID, int orderTableId) {
         this.orderID = orderID;
-//        this.orderTableID = orderTableID;
+        this.orderTableId = orderTableId;
         this.totalPrice = 0.0;
         this.orderStatus = OrderStatus.WAITING;
         this.itemsOrdered = new HashMap<>();
@@ -28,9 +28,9 @@ public class Order {
         return orderID;
     }
 
-//    public int getOrderTableID() {
-//        return orderTableID;
-//    }
+    public int getOrderTableID() {
+        return orderTableId;
+    }
 
 
     public void setOrderID(int orderID) {

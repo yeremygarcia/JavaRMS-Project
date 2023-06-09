@@ -6,17 +6,13 @@ public class Table {
     private int tableId;
     private int tableSize;
     private TableStatus status;
-    private Customer assignedCustomer;
-
+    private Order order;
     public Table(int tableId, int tableSize) {
         this.tableId = tableId;
         this.tableSize = tableSize;
         this.status = TableStatus.AVAILABLE;
     }
 
-    public Table() {
-
-    }
     // Getters and setters
 
     public int getTableId() {
@@ -35,12 +31,12 @@ public class Table {
         this.status = status;
     }
 
-    public Customer getAssignedCustomer() {
-        return assignedCustomer;
+    public Order getOrder() {
+        return order;
     }
 
-    public void setAssignedCustomer(Customer assignedCustomer) {
-        this.assignedCustomer = assignedCustomer;
+    public void setOrder(Order order) {
+        this.order = order;
     }
 }
 

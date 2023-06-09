@@ -11,6 +11,7 @@ public class MenuItem {
     private double preparationTime;
     private double itemPrice;
     private List<String> ingredients;
+    private int amountOfTimesOrdered;
 
     public MenuItem(String itemName, String itemDescription, double preparationTime, double itemPrice, List<String> ingredients) {
         this.itemName = itemName;
@@ -58,6 +59,14 @@ public class MenuItem {
 
     public void setIngredients(List<String> ingredients) {
         this.ingredients = ingredients;
+    }
+
+    public int getAmountOfTimesOrdered() {
+        return amountOfTimesOrdered;
+    }
+
+    public void setAmountOfTimesOrdered(int amountOfTimesOrdered) {
+        this.amountOfTimesOrdered = amountOfTimesOrdered;
     }
 
     @Override

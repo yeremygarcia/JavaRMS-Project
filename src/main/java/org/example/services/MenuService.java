@@ -4,10 +4,7 @@ import org.example.model.MenuItem;
 import org.example.model.User;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class MenuService {
     private Scanner scanner;
@@ -66,28 +63,14 @@ public class MenuService {
             int choice = getMenuManagementChoice();
 
             switch (choice) {
-                case 1:
-                    addMenuItem();
-                    break;
-
-                case 2:
-                    removeMenuItem();
-                    break;
-
-                case 3:
-                    editMenuItem();
-                    break;
-
-                case 4:
-                    displayMenu();
-                    break;
-
-                case 5:
+                case 1 -> addMenuItem();
+                case 2 -> removeMenuItem();
+                case 3 -> editMenuItem();
+                case 4 -> displayMenu();
+                case 5 -> {
                     return;
-
-                default:
-                    System.out.println("Invalid choice. Please select a valid option.");
-                    break;
+                }
+                default -> System.out.println("Invalid choice. Please select a valid option.");
             }
         }
     }
@@ -201,14 +184,6 @@ public class MenuService {
         }
     }
 
-    public void checkMenuFileExistence() {
-        File file = new File(MENU_FILE_PATH);
-        if (file.exists()) {
-            System.out.println("menu.txt file exists.");
-        } else {
-            System.out.println("menu.txt file does not exist.");
-        }
-    }
 
     public void loadMenuItemsFromFile() {
 //        System.out.println("loadMenuItemsFromFile() called");
@@ -246,9 +221,7 @@ public class MenuService {
 
     public void displayMenu() {
         System.out.println("\nMENU");
-//        checkMenuFileExistence();
         loadMenuItemsFromFile();
-//        System.out.println(getMenuItems());
         for (MenuItem item : getMenuItems()) {
             System.out.println(item.toString());
             System.out.println("--------------------");
@@ -263,4 +236,5 @@ public class MenuService {
         }
         return null;
     }
+
 }

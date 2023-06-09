@@ -1,0 +1,142 @@
+package org.example.services;
+
+import org.example.OrderStatus;
+import org.example.model.Order;
+
+import org.example.model.MenuItem;
+
+import java.util.Map;
+import java.util.Scanner;
+
+public class OrderServiceMenu {
+    private OrderService orderService;
+    private MenuService menuService;
+    private Scanner scanner;
+
+    public OrderServiceMenu(OrderService orderService, MenuService menuService) {
+        this.orderService = orderService;
+        this.menuService = menuService;
+        this.scanner = new Scanner(System.in);
+    }
+
+    public void processOrder() {
+        System.out.println("Enter table ID: ");
+        int tableId = Integer.parseInt(scanner.nextLine());
+
+        // Display the menu
+        menuService.displayMenu();
+
+        // Order food
+        Order order = new Order(orderService.getTotalOrders() + 1, tableId);
+        while (true) {
+            System.out.println("Enter item name to add to order (0 to finish ordering):");
+            String itemName = scanner.nextLine();
+            if (itemName.equals("0")) {
+                break;
+            }
+
+            // Check if the item exists in the menu
+            MenuItem item = menuService.getMenuItemByName(itemName);
+            if (item == null) {
+                System.out.println("Invalid item name.");
+                continue;
+            }
+
+            // Get the quantity
+            System.out.print("Enter quantity: ");
+            int quantity = Integer.parseInt(scanner.nextLine());
+
+            // Add the item to the order
+            order.addItem(item, quantity);
+            System.out.println("Added " + quantity + "x " + item.getName() + " to the order.");
+        }
+
+        // Add the order to the order service
+        orderService.addOrder(order);
+
+        // Process the order
+        orderService.processOrder(order.getOrderID());
+    }
+
+    public void updateOrders() {
+        System.out.println("Enter order ID: ");
+        int orderId = Integer.parseInt(scanner.nextLine());
+
+        Order order = orderService.getOrder(orderId);
+        if (order == null) {
+            System.out.println("Invalid order ID.");
+            return;
+        }
+
+        System.out.println("Enter the new status for the order:");
+        String newStatus = scanner.nextLine();
+
+        if (newStatus.equalsIgnoreCase("waiting")) {
+            order.setOrderStatus(OrderStatus.WAITING);
+        } else if (newStatus.equalsIgnoreCase("ready")) {
+            order.setOrderStatus(OrderStatus.READY);
+        } else if (newStatus.equalsIgnoreCase("preparing")) {
+            order.setOrderStatus(OrderStatus.PREPARING);
+        } else {
+            System.out.println("Invalid order status. Order status not updated.");
+        }
+
+    }
+
+
+    public void displayAllOrders() {
+        System.out.println("All Orders:");
+        for (Order order : orderService.getAllOrders()) {
+            System.out.println("Order ID: " + order.getOrderID() + ", Status: " + order.getOrderStatus());
+        }
+    }
+
+    public void displaySpecificOrders() {
+        System.out.println("Enter Order ID: ");
+        int orderId = Integer.parseInt(scanner.nextLine());
+
+        Order order = orderService.getOrder(orderId);
+        if (order == null) {
+            System.out.println("Order not found.");
+            return;
+        }
+
+        System.out.println();
+        System.out.println("Order ID: " + order.getOrderID());
+        System.out.println("Table ID: " + order.getOrderTableID());
+        System.out.println("Items Ordered:");
+        for (Map.Entry<MenuItem, Integer> entry : order.getItemsOrdered().entrySet()) {
+            MenuItem item = entry.getKey();
+            int quantity = entry.getValue();
+            double cost = item.getPrice() * quantity;
+            System.out.println("- " + item.getName() + " (Quantity: " + quantity + ", Cost: $" + cost + ")");
+        }
+        System.out.println("Total Price: " + order.getTotalPrice());
+        System.out.println();
+    }
+
+    public void showMenu() {
+        int choice = 0;
+        do {
+            System.out.println("Order Service Menu:");
+            System.out.println("1. Process Order");
+            System.out.println("2. Update Orders");
+            System.out.println("3. Display Specific Orders");
+            System.out.println("4. Display All Orders");
+            System.out.println("0. Exit");
+
+            System.out.println("Enter your choice: ");
+            choice = Integer.parseInt(scanner.nextLine());
+
+            switch (choice) {
+                case 1 -> processOrder();
+                case 2 -> updateOrders();
+                case 3 -> displaySpecificOrders();
+                case 4 -> displayAllOrders();
+                case 0 -> System.out.println("Exiting...");
+                default -> System.out.println("Invalid choice. Please try again.");
+            }
+        } while (choice != 0);
+    }
+}
+
