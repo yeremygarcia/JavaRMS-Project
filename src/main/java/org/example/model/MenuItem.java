@@ -5,6 +5,9 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.example.Colors.ANSI_BLUE;
+import static org.example.Colors.ANSI_RESET;
+
 public class MenuItem {
     private String itemName;
     private String itemDescription;
@@ -72,11 +75,11 @@ public class MenuItem {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("Name: ").append(getName()).append("\n");
+        sb.append(ANSI_BLUE + "Name: ").append(getName()).append("\n");
         sb.append("Description: ").append(getDescription()).append("\n");
         sb.append("Price: $").append(getPrice()).append("\n");
         sb.append("Prep Time: ").append(getPreparationTime()).append(" minutes").append("\n");
-        sb.append("Ingredients: ");
+        sb.append("Ingredients: " + ANSI_RESET);
 
         if (!getIngredients().isEmpty()) {
             sb.append(getIngredients().get(0));

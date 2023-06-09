@@ -8,6 +8,8 @@ import org.example.Role;
 import org.example.model.User;
 import org.mindrot.jbcrypt.BCrypt;
 
+import static org.example.Colors.*;
+
 public class UserService {
     private Map<String, User> users;
     private User currentUser;
@@ -49,20 +51,20 @@ public class UserService {
             createUserAccount(username, password, role);
 
             // Inform the user that the registration was successful
-            System.out.println("Registration successful. Please log in with your new account.");
+            System.out.println(ANSI_BLUE + "Registration successful. Please log in with your new account." + ANSI_RESET);
         } else {
             // Username is not valid (e.g., already exists)
-            System.out.println("Username is already taken. Please choose a different username.");
+            System.out.println(ANSI_RED + "Username is already taken. Please choose a different username." + ANSI_RESET);
         }
     }
 
     private String promptUsername() {
-        System.out.print("Enter your username: ");
+        System.out.print(ANSI_CYAN + "Enter your username: " + ANSI_RESET);
         return scanner.nextLine();
     }
 
     private String promptPassword() {
-        System.out.print("Enter your password: ");
+        System.out.print(ANSI_CYAN + "Enter your password: " + ANSI_RESET);
         return scanner.nextLine();
     }
 
