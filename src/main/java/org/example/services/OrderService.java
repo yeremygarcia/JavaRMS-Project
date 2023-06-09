@@ -3,6 +3,7 @@ package org.example.services;
 import org.example.utilities.OrderStatus;
 import org.example.model.*;
 
+import java.lang.reflect.Array;
 import java.util.*;
 
 public class OrderService {
@@ -14,8 +15,50 @@ public class OrderService {
     public OrderService(Inventory inventory) {
         this.orderList = new ArrayList<>();
         this.activeOrders = new HashMap<>();
-        this.totalOrders = 0;
         this.inventory = inventory;
+
+        MenuItem burger = new MenuItem("burger", "award winning burger", 8, 6, Arrays.asList("burger patty", "bun"));
+        MenuItem fries = new MenuItem("fries", "crinkle cut", 2,2, Arrays.asList("potatoes", "oil", "salt"));
+        MenuItem vanillaShake = new MenuItem("vanilla shake", "tasty vanilla milkshake", 3,2, Arrays.asList("vanilla ice cream", "milk"));
+        MenuItem cs = new MenuItem("chicken sandwich", "classic chicken sandwich",8,5, Arrays.asList("chicken patty", "bun"));
+
+        Order order1 = new Order(1,2);
+        order1.addItem(burger, 2);
+        order1.addItem(fries, 2);
+        order1.addItem(vanillaShake, 2);
+        order1.setOrderStatus(OrderStatus.PREPARING);
+
+        Order order2 = new Order(2,2);
+        order2.addItem(cs, 1);
+        order2.addItem(fries, 1);
+        order2.setOrderStatus(OrderStatus.PREPARING);
+
+        Order order3 = new Order(3, 3);
+        order3.addItem(vanillaShake, 5);
+        order3.setOrderStatus(OrderStatus.PREPARING);
+
+        Order order4 = new Order(4,1);
+        order4.addItem(fries, 3);
+        order4.addItem(cs, 3);
+        order4.setOrderStatus(OrderStatus.PREPARING);
+
+        Order order5 = new Order(5, 1);
+        order5.addItem(burger,1);
+        order5.setOrderStatus(OrderStatus.PREPARING);
+
+        this.orderList.add(order1);
+        this.orderList.add(order2);
+        this.orderList.add(order3);
+        this.orderList.add(order4);
+        this.orderList.add(order5);
+
+        this.activeOrders.put(order1.getOrderID(), order1);
+        this.activeOrders.put(order2.getOrderID(), order2);
+        this.activeOrders.put(order3.getOrderID(), order3);
+        this.activeOrders.put(order4.getOrderID(), order4);
+        this.activeOrders.put(order5.getOrderID(), order5);
+
+        this.totalOrders = 5;
     }
 
     public Inventory getInventory() {

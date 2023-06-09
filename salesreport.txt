@@ -3,11 +3,57 @@
 Daily Sales Report
 Date: 2023-06-09
 -----------------------------
-Total Revenue: $0.0
+Total Revenue: $76.0
 
 Most Popular Items:
+- vanilla shake: 7
+- fries: 6
+- burger: 5
 
 Table Sales:
+- Table ID: 1, Total Cost: $27.0
+- Table ID: 2, Total Cost: $27.0
+- Table ID: 3, Total Cost: $22.0
+
+Order ID: 1
+Table ID: 2
+Items Ordered:
+- fries (Quantity: 2, Cost: $4.0)
+- vanilla shake (Quantity: 2, Cost: $4.0)
+- burger (Quantity: 2, Cost: $12.0)
+Total Price: $20.0
+
+Order ID: 2
+Table ID: 2
+Items Ordered:
+- fries (Quantity: 1, Cost: $2.0)
+- chicken sandwich (Quantity: 1, Cost: $5.0)
+Total Price: $7.0
+
+Order ID: 3
+Table ID: 3
+Items Ordered:
+- vanilla shake (Quantity: 5, Cost: $10.0)
+Total Price: $10.0
+
+Order ID: 4
+Table ID: 1
+Items Ordered:
+- fries (Quantity: 3, Cost: $6.0)
+- chicken sandwich (Quantity: 3, Cost: $15.0)
+Total Price: $21.0
+
+Order ID: 5
+Table ID: 1
+Items Ordered:
+- burger (Quantity: 1, Cost: $6.0)
+Total Price: $6.0
+
+Order ID: 6
+Table ID: 3
+Items Ordered:
+- burger (Quantity: 2, Cost: $12.0)
+Total Price: $12.0
 
 -----------------------------
 Sales report exported to salesreport.txt

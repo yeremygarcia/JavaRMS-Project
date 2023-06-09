@@ -31,7 +31,7 @@ public class MenuService {
         System.out.println("3. Register Staff");
         System.out.println("4. Manage Menu");
         System.out.println("5. Process Order");
-        System.out.println("6. Manage Table");
+        System.out.println("6. Manage Tables");
         System.out.println("7. Manage Inventory");
         System.out.println("8. Generate Sales Report");
         System.out.println("9. Log out");
