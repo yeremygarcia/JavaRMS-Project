@@ -1,8 +1,7 @@
 package org.example.services;
 
-import org.example.OrderStatus;
-import org.example.model.Order;
-import org.example.model.Table;
+import org.example.utilities.OrderStatus;
+import org.example.model.*;
 
 import java.util.*;
 
@@ -10,11 +9,21 @@ public class OrderService {
     private List<Order> orderList;
     private Map<Integer, Order> activeOrders;
     private int totalOrders;
+    private Inventory inventory;
 
-    public OrderService() {
+    public OrderService(Inventory inventory) {
         this.orderList = new ArrayList<>();
         this.activeOrders = new HashMap<>();
         this.totalOrders = 0;
+        this.inventory = inventory;
+    }
+
+    public Inventory getInventory() {
+        return inventory;
+    }
+
+    public void setInventory(Inventory inventory) {
+        this.inventory = inventory;
     }
 
     public void addOrder(Order order) {
@@ -61,6 +70,18 @@ public class OrderService {
             // Process the order
             order.updateOrderStatus(OrderStatus.PREPARING);
             System.out.println("Order " + orderID + " has been processed and is ready for payment.");
+
+            // Update ingredient usage
+            for (Map.Entry<MenuItem, Integer> entry : order.getItemsOrdered().entrySet()) {
+                MenuItem item = entry.getKey();
+                int quantity = entry.getValue();
+
+                // Update the ingredient usage
+                for (String ingredientName : item.getIngredients()) {
+                    String trimmedName = ingredientName.replace("[", "").replace("]", "");
+                    inventory.updateIngredientUsage(trimmedName, quantity);
+                }
+            }
 
             // Calculate the total price
             double totalPrice = order.getTotalPrice();

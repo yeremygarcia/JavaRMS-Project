@@ -1,6 +1,7 @@
 package org.example;
 
 import org.example.model.User;
+import org.example.utilities.Role;
 import org.mindrot.jbcrypt.BCrypt;
 
 import java.util.HashMap;

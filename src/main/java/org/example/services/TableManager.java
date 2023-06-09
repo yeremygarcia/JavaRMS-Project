@@ -1,7 +1,6 @@
 package org.example.services;
 
-import org.example.model.Customer;
-import org.example.TableStatus;
+import org.example.utilities.TableStatus;
 import org.example.model.Order;
 import org.example.model.Table;
 

@@ -3,8 +3,8 @@ package org.example;
 import org.example.model.*;
 import org.example.services.*;
 import org.example.utilities.GenerateReport;
+import org.example.utilities.Role;
 
-import java.util.Arrays;
 import java.util.Scanner;
 
 
@@ -15,13 +15,34 @@ public class Main {
 
         // Declare service classes for different components of the application
         UserService userService = new UserService();
-//        InventoryService inventoryService = new InventoryService();
         MenuService menuService = new MenuService();
-        OrderService orderService = new OrderService();
+        Inventory inventory = new Inventory();
+        // Create ingredient objects
+        Ingredient potatoes = new Ingredient("potatoes", 200, 100);
+        Ingredient oil = new Ingredient("oil", 20, 15);
+        Ingredient salt = new Ingredient("salt", 40, 25);
+        Ingredient beefPatty = new Ingredient("beef patty", 100, 75);
+        Ingredient bun = new Ingredient("bun", 100, 65);
+        Ingredient vanillaIceCream = new Ingredient("vanilla ice cream", 80, 60);
+        Ingredient milk = new Ingredient("milk", 90, 70);
+
+        // Add ingredients to the inventory
+        inventory.addIngredient(potatoes);
+        inventory.addIngredient(oil);
+        inventory.addIngredient(salt);
+        inventory.addIngredient(beefPatty);
+        inventory.addIngredient(bun);
+        inventory.addIngredient(vanillaIceCream);
+        inventory.addIngredient(milk);
+
+        OrderService orderService = new OrderService(inventory);
         TableManager tableManager = new TableManager();
         TableMenuService tableMenuService = new TableMenuService(tableManager, orderService);
-        OrderServiceMenu orderServiceMenu = new OrderServiceMenu(orderService, menuService);
+        OrderServiceMenu orderServiceMenu = new OrderServiceMenu(orderService, menuService, inventory);
         GenerateReport generateReport = new GenerateReport(orderService);
+
+
+        InventoryServiceMenu inventoryServiceMenu = new InventoryServiceMenu(orderService.getInventory());
 
         while (true) {
             // Show the main menu and get the user's choice
@@ -40,7 +61,13 @@ public class Main {
                         System.out.println("You don't have permission to perform this action.");
                     }
                 }
-                case 3 -> userService.registerUser(Role.STAFF);
+                case 3 -> {
+                    if (currentUser != null && currentUser.getRole() == Role.MANAGER) {
+                        userService.registerUser(Role.STAFF);
+                    } else {
+                        System.out.println("You don't have permission to perform this action.");
+                    }
+                }
                 case 4 -> {
                     if (currentUser != null && currentUser.getRole() == Role.MANAGER) {
                         menuService.manageMenu();
@@ -49,20 +76,33 @@ public class Main {
                     }
                 }
                 case 5 -> {
-                    if (currentUser != null && currentUser.getRole() == Role.STAFF) {
+                    if (currentUser != null && (currentUser.getRole() == Role.STAFF || currentUser.getRole() == Role.MANAGER)) {
                         orderServiceMenu.showMenu();
                     } else {
                         System.out.println("You don't have permission to perform this action.");
                     }
                 }
-                case 6 -> tableMenuService.showMenu();
-
-
-                // case 7: Manage the inventory
-                // Here, you would call appropriate methods from the InventoryService to manage the inventory
-
-                case 8 -> generateReport.dailyReport();
-
+                case 6 -> {
+                    if (currentUser != null && (currentUser.getRole() == Role.STAFF || currentUser.getRole() == Role.MANAGER)) {
+                        tableMenuService.showMenu();
+                    } else {
+                        System.out.println("You don't have permission to perform this action.");
+                    }
+                }
+                case 7 -> {
+                    if (currentUser != null && (currentUser.getRole() == Role.STAFF || currentUser.getRole() == Role.MANAGER)) {
+                        inventoryServiceMenu.showMenu();
+                    } else {
+                        System.out.println("You don't have permission to perform this action.");
+                    }
+                }
+                case 8 -> {
+                    if (currentUser != null && currentUser.getRole() == Role.MANAGER) {
+                        generateReport.dailyReport();
+                    } else {
+                        System.out.println("You don't have permission to perform this action.");
+                    }
+                }
                 case 9 -> userService.logoutUser();
                 case 0 -> userService.exitApplication();
                 default ->

@@ -1,6 +1,6 @@
 package org.example.model;
 
-import org.example.TableStatus;
+import org.example.utilities.TableStatus;
 
 public class Table {
     private int tableId;

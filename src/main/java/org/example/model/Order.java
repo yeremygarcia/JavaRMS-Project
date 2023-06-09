@@ -1,9 +1,7 @@
 package org.example.model;
 
-import org.example.OrderStatus;
-import org.example.model.MenuItem;
+import org.example.utilities.OrderStatus;
 
-import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class Order {

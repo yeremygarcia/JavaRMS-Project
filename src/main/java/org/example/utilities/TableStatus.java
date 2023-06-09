@@ -1,4 +1,4 @@
-package org.example;
+package org.example.utilities;
 
 import org.example.model.Customer;
 import org.example.model.MenuItem;

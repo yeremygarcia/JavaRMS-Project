@@ -1,6 +1,7 @@
 package org.example.services;
 
-import org.example.OrderStatus;
+import org.example.utilities.OrderStatus;
+import org.example.model.Inventory;
 import org.example.model.Order;
 
 import org.example.model.MenuItem;
@@ -12,11 +13,13 @@ public class OrderServiceMenu {
     private OrderService orderService;
     private MenuService menuService;
     private Scanner scanner;
+    private Inventory inventory;
 
-    public OrderServiceMenu(OrderService orderService, MenuService menuService) {
+    public OrderServiceMenu(OrderService orderService, MenuService menuService, Inventory inventory) {
         this.orderService = orderService;
         this.menuService = menuService;
         this.scanner = new Scanner(System.in);
+        this.inventory = inventory;
     }
 
     public void processOrder() {
@@ -51,11 +54,21 @@ public class OrderServiceMenu {
             System.out.println("Added " + quantity + "x " + item.getName() + " to the order.");
         }
 
-        // Add the order to the order service
-        orderService.addOrder(order);
+        // Set the inventory for the OrderService
+        orderService.setInventory(inventory);
 
-        // Process the order
-        orderService.processOrder(order.getOrderID());
+        // Check for low ingredients
+        inventory.checkLowIngredients();
+
+        // Proceed with processing the order only if all ingredients are available
+        if (inventory.areAllIngredientsAvailable(order.getItemsOrdered())) {
+            // Process the order
+            orderService.processOrder(order.getOrderID());
+            // Add the order to the order service
+            orderService.addOrder(order);
+        } else {
+            System.out.println("Unable to process order. Some ingredients are not available.");
+        }
     }
 
     public void updateOrders() {

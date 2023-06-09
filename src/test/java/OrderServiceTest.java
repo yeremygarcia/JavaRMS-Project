@@ -1,4 +1,4 @@
-import org.example.OrderStatus;
+import org.example.utilities.OrderStatus;
 import org.example.model.Order;
 import org.example.services.OrderService;
 import org.junit.jupiter.api.Assertions;

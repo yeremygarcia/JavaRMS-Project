@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
-import org.example.Role;
+import org.example.utilities.Role;
 import org.example.model.User;
 import org.mindrot.jbcrypt.BCrypt;
 
